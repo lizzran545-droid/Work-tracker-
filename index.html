@@ -250,6 +250,31 @@
       <div class="ots" id="ot-detail"></div>
     </div>
 
+    <!-- WEEKLY HOURS BREAKDOWN -->
+    <div class="form-card" id="week-breakdown" style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.6px">Weekly Hours</div>
+        <div style="font-size:13px;font-family:'DM Mono',monospace;color:var(--text)" id="week-prog-label">0h 0m / 43h</div>
+      </div>
+      <div style="background:var(--surface2);border-radius:6px;height:8px;overflow:hidden;margin-bottom:10px">
+        <div id="week-prog-bar" style="height:100%;border-radius:6px;background:var(--green);width:0%;transition:width 0.4s ease"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
+        <div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Regular</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--text)" id="week-reg-h">0h 0m</div>
+        </div>
+        <div style="border-left:1px solid var(--border);border-right:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Overtime</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--green)" id="week-ot-h">0h 0m</div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Remaining</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--amber)" id="week-rem-h">43h 0m</div>
+        </div>
+      </div>
+    </div>
+
     <div class="week-nav">
       <button class="wk-arrow" onclick="changeWeek(-1)">&#8592;</button>
       <span id="week-label">This week</span>
@@ -327,8 +352,9 @@
 
 </div>
 <script>
-const RATE = 20;
-const OT_THRESHOLD = 40;
+const RATE = 17.18;
+const OT_RATE = 20;
+const OT_THRESHOLD = 43;
 let state = { clockedIn: false, clockInTime: null, weekOffset: 0, viewDay: null, manualFrom: null };
 let db = loadDb();
 
@@ -358,7 +384,7 @@ function totalHoursForWeek(days) {
 function calcEarnings(h) {
   const reg = Math.min(h, OT_THRESHOLD);
   const ot = Math.max(0, h - OT_THRESHOLD);
-  return { reg, ot, earn: reg*RATE + ot*RATE*1.5 };
+  return { reg, ot, earn: reg * RATE + ot * OT_RATE };
 }
 function fmtHM(h) {
   const hh = Math.floor(h); const mm = Math.round((h-hh)*60);
@@ -428,8 +454,8 @@ function renderWeek() {
 
   if (ot > 0) {
     document.getElementById('ot-banner').style.display = 'block';
-    document.getElementById('ot-earn').textContent = '$' + (ot * RATE * 1.5).toFixed(2);
-    document.getElementById('ot-detail').textContent = fmtHM(ot) + ' overtime @ $' + (RATE * 1.5).toFixed(2) + '/hr';
+    document.getElementById('ot-earn').textContent = '$' + (ot * OT_RATE).toFixed(2);
+    document.getElementById('ot-detail').textContent = fmtHM(ot) + ' overtime @ $' + OT_RATE.toFixed(2) + '/hr';
     document.getElementById('stat-ot-label').textContent = fmtHM(ot) + ' overtime';
     document.getElementById('stat-sub').textContent = fmtHM(Math.min(totalH, OT_THRESHOLD)) + ' regular';
   } else {
@@ -438,6 +464,20 @@ function renderWeek() {
     const remaining = OT_THRESHOLD - totalH;
     document.getElementById('stat-sub').textContent = remaining > 0 ? (remaining.toFixed(1) + 'h to overtime') : '';
   }
+
+  // Weekly breakdown card
+  const regH = Math.min(totalH, OT_THRESHOLD);
+  const remH = Math.max(0, OT_THRESHOLD - totalH);
+  const pct = Math.min(100, (totalH / OT_THRESHOLD) * 100);
+  const barColor = ot > 0 ? 'var(--green-dark)' : 'var(--green)';
+  document.getElementById('week-prog-label').textContent = fmtHM(totalH) + ' / 43h';
+  document.getElementById('week-prog-bar').style.width = pct + '%';
+  document.getElementById('week-prog-bar').style.background = barColor;
+  document.getElementById('week-reg-h').textContent = fmtHM(regH);
+  document.getElementById('week-ot-h').textContent = ot > 0 ? fmtHM(ot) : '—';
+  document.getElementById('week-ot-h').style.color = ot > 0 ? 'var(--green)' : 'var(--text3)';
+  document.getElementById('week-rem-h').textContent = remH > 0 ? fmtHM(remH) : '✓ Done';
+  document.getElementById('week-rem-h').style.color = remH > 0 ? 'var(--amber)' : 'var(--green)';
 
   const hours = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0));
   const maxH = Math.max(...hours, 0.001);
