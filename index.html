@@ -10,118 +10,58 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
   :root {
-    --bg: #F7F6F2;
-    --surface: #FFFFFF;
-    --surface2: #F0EEE8;
-    --border: rgba(0,0,0,0.1);
-    --border2: rgba(0,0,0,0.18);
-    --text: #1A1917;
-    --text2: #6B6960;
-    --text3: #9B9A94;
-    --green: #1D9E75;
-    --green-light: #E1F5EE;
-    --green-dark: #0F6E56;
-    --green-text: #085041;
-    --red: #D85A30;
-    --blue: #185FA5;
-    --blue-light: #E6F1FB;
-    --amber: #BA7517;
-    --radius: 14px;
-    --radius-sm: 9px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --bg: #F7F6F2; --surface: #FFFFFF; --surface2: #F0EEE8;
+    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.18);
+    --text: #1A1917; --text2: #6B6960; --text3: #9B9A94;
+    --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #0F6E56; --green-text: #085041;
+    --red: #D85A30; --blue: #185FA5; --blue-light: #E6F1FB; --amber: #BA7517;
+    --radius: 14px; --radius-sm: 9px;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #18171A;
-      --surface: #242328;
-      --surface2: #2E2D32;
-      --border: rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.15);
-      --text: #F0EFE9;
-      --text2: #9B9A94;
-      --text3: #6B6960;
-      --green-light: #0A2E22;
-      --green-text: #5DCAA5;
-      --blue-light: #0C1F35;
+      --bg: #18171A; --surface: #242328; --surface2: #2E2D32;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
+      --text: #F0EFE9; --text2: #9B9A94; --text3: #6B6960;
+      --green-light: #0A2E22; --green-text: #5DCAA5; --blue-light: #0C1F35;
     }
   }
-
   html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
-
-  #app { max-width: 430px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
-
+  #app { max-width: 430px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 72px; }
   .screen { display: none; flex-direction: column; flex: 1; padding: 0 16px 32px; }
   .screen.active { display: flex; }
 
   /* TOP BAR */
   .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 52px 0 20px; }
-  .top-bar h1 { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+  .top-bar h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
   .nav-btn { background: none; border: none; cursor: pointer; font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--blue); padding: 6px 0; }
 
+  /* TAB BAR */
+  .tab-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: var(--surface); border-top: 1px solid var(--border); display: flex; z-index: 100; padding-bottom: env(safe-area-inset-bottom,0px); }
+  .tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0 8px; cursor: pointer; border: none; background: none; font-family: 'DM Sans', sans-serif; color: var(--text3); font-size: 10px; font-weight: 500; gap: 3px; transition: color 0.15s; }
+  .tab-item.active { color: var(--blue); }
+  .tab-icon { font-size: 20px; line-height: 1; }
+
   /* CLOCK CARD */
-  .clock-card {
-    background: var(--text);
-    color: var(--bg);
-    border-radius: var(--radius);
-    padding: 24px 20px 20px;
-    margin-bottom: 12px;
-    position: relative;
-    overflow: hidden;
-  }
-  .clock-card::before {
-    content: '';
-    position: absolute;
-    top: -30px; right: -30px;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-  }
-  .clock-card .time {
-    font-family: 'DM Mono', monospace;
-    font-size: 42px;
-    font-weight: 500;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 6px;
-    color: inherit;
-  }
+  .clock-card { background: var(--text); color: var(--bg); border-radius: var(--radius); padding: 24px 20px 20px; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .clock-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.04); }
+  .clock-card .time { font-family: 'DM Mono', monospace; font-size: 42px; font-weight: 500; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; color: inherit; }
   .clock-card .cdate { font-size: 13px; opacity: 0.5; margin-bottom: 16px; }
   .clock-card .status { font-size: 13px; font-weight: 500; opacity: 0.7; min-height: 18px; }
   .clock-card .status.active { opacity: 1; color: #5DCAA5; }
 
   /* BUTTONS */
-  .punch-btn {
-    width: 100%; padding: 16px;
-    font-size: 16px; font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    border-radius: var(--radius);
-    border: none; cursor: pointer;
-    margin-bottom: 10px;
-    transition: transform 0.1s, opacity 0.1s;
-    letter-spacing: -0.2px;
-  }
+  .punch-btn { width: 100%; padding: 16px; font-size: 16px; font-weight: 600; font-family: 'DM Sans', sans-serif; border-radius: var(--radius); border: none; cursor: pointer; margin-bottom: 10px; transition: transform 0.1s, opacity 0.1s; }
   .punch-btn:active { transform: scale(0.98); opacity: 0.9; }
   .punch-btn.in { background: var(--green); color: #fff; }
   .punch-btn.out { background: var(--red); color: #fff; }
-
-  .ghost-btn {
-    width: 100%; padding: 13px;
-    font-size: 14px; font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    border-radius: var(--radius);
-    border: 1px solid var(--border2);
-    background: var(--surface);
-    color: var(--text);
-    cursor: pointer;
-    margin-bottom: 16px;
-    transition: transform 0.1s;
-  }
+  .ghost-btn { width: 100%; padding: 13px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; border-radius: var(--radius); border: 1px solid var(--border2); background: var(--surface); color: var(--text); cursor: pointer; margin-bottom: 10px; transition: transform 0.1s; }
   .ghost-btn:active { transform: scale(0.98); }
+  .primary-btn { width: 100%; padding: 14px; border-radius: var(--radius); border: none; background: var(--blue); color: #fff; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 4px; }
+  .primary-btn:active { opacity: 0.85; }
+  .secondary-btn { width: 100%; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border2); background: none; color: var(--text); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px; }
 
-  /* STATS */
+  /* STAT GRID (home) */
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   .stat-card { background: var(--surface); border-radius: var(--radius-sm); padding: 14px 16px; border: 1px solid var(--border); }
   .stat-card .slabel { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; font-weight: 500; }
@@ -136,101 +76,128 @@
   .ot-banner .ots { font-size: 12px; color: var(--green-text); margin-top: 2px; }
 
   /* WEEK NAV */
-  .week-nav { display: flex; align-items: center; justify-content: space-between; margin: 16px 0 10px; }
+  .week-nav { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 10px; }
   .week-nav span { font-size: 13px; font-weight: 500; color: var(--text2); }
   .wk-arrow { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: 15px; color: var(--text); display: flex; align-items: center; justify-content: center; }
 
+  /* WEEKLY BREAKDOWN CARD */
+  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+  .form-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  .prog-bar-wrap { background: var(--surface2); border-radius: 6px; height: 8px; overflow: hidden; margin-bottom: 10px; }
+  .prog-bar-fill { height: 100%; border-radius: 6px; background: var(--green); transition: width 0.4s ease; }
+
   /* DAY LIST */
   .day-list { display: flex; flex-direction: column; gap: 6px; }
-  .day-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: border-color 0.15s; }
-  .day-row:active { border-color: var(--border2); }
+  .day-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
   .day-row.today { border-color: var(--green); }
-  .day-row .dname { font-size: 13px; font-weight: 500; color: var(--text); min-width: 34px; }
+  .day-row .dname { font-size: 13px; font-weight: 500; min-width: 34px; }
   .day-row .ddate { font-size: 11px; color: var(--text3); min-width: 44px; }
   .day-row .dbar { flex: 1; height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
   .day-row .dbar-fill { height: 100%; background: var(--green); border-radius: 2px; }
-  .day-row .dhours { font-size: 13px; color: var(--text); font-family: 'DM Mono', monospace; min-width: 58px; text-align: right; }
+  .day-row .dhours { font-size: 13px; font-family: 'DM Mono', monospace; min-width: 58px; text-align: right; }
   .day-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 
   /* DAY SCREEN */
   .day-header { padding: 52px 0 16px; }
   .day-header h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 4px; }
   .day-header .dsub { font-size: 14px; color: var(--text2); }
-  .day-header .dback { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
-
   .entries { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
   .entry-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; align-items: flex-start; justify-content: space-between; }
   .entry-card .ei { flex: 1; }
   .entry-card .et { font-size: 12px; color: var(--text3); margin-bottom: 3px; font-family: 'DM Mono', monospace; }
-  .entry-card .ed { font-size: 14px; font-weight: 500; color: var(--text); }
+  .entry-card .ed { font-size: 14px; font-weight: 500; }
   .entry-card .en { font-size: 13px; color: var(--text2); margin-top: 4px; line-height: 1.4; }
-  .entry-card .manual-badge { display: inline-block; font-size: 10px; background: var(--blue-light); color: var(--blue); border-radius: 4px; padding: 1px 6px; margin-left: 6px; font-weight: 500; }
+  .manual-badge { display: inline-block; font-size: 10px; background: var(--blue-light); color: var(--blue); border-radius: 4px; padding: 1px 6px; margin-left: 6px; font-weight: 500; }
   .del-btn { background: none; border: none; cursor: pointer; color: var(--text3); font-size: 18px; padding: 0 0 0 10px; line-height: 1; }
-  .del-btn:hover { color: var(--red); }
+  .entry-actions { display: flex; align-items: center; gap: 6px; }
+  .dup-btn { background: none; border: 1px solid var(--border2); border-radius: 6px; cursor: pointer; color: var(--text2); font-size: 12px; padding: 3px 8px; font-family: 'DM Sans', sans-serif; }
 
-  /* FORM CARD */
-  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
-  .form-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+  /* FORM */
   .form-row { margin-bottom: 12px; }
   .form-row label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 5px; font-weight: 500; }
-  .form-row input[type="date"],
-  .form-row input[type="time"],
-  .form-row textarea,
-  .form-row select {
-    width: 100%;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    padding: 10px 12px;
-    border: 1px solid var(--border2);
-    border-radius: var(--radius-sm);
-    background: var(--surface2);
-    color: var(--text);
-    outline: none;
-    -webkit-appearance: none;
+  .form-row input[type="date"], .form-row input[type="time"], .form-row textarea, .form-row select, .form-row input[type="number"] {
+    width: 100%; font-family: 'DM Sans', sans-serif; font-size: 15px; padding: 10px 12px;
+    border: 1px solid var(--border2); border-radius: var(--radius-sm); background: var(--surface2); color: var(--text); outline: none; -webkit-appearance: none;
   }
-  .form-row input:focus, .form-row textarea:focus { border-color: var(--blue); }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color: var(--blue); }
   .form-row textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
-  .time-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .form-error { font-size: 12px; color: var(--red); margin-top: 8px; display: none; }
-
-  .primary-btn { width: 100%; padding: 14px; border-radius: var(--radius); border: none; background: var(--blue); color: #fff; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 4px; transition: opacity 0.1s; }
-  .primary-btn:active { opacity: 0.85; }
-  .secondary-btn { width: 100%; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border2); background: none; color: var(--text); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px; }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin: 16px 0 8px; }
 
   /* YEAR SCREEN */
   .year-table { width: 100%; border-collapse: collapse; }
   .year-table th { text-align: left; padding: 8px 10px; font-size: 11px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
-  .year-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text); }
+  .year-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); font-size: 13px; }
   .year-table td:nth-child(2) { font-family: 'DM Mono', monospace; }
   .year-table td.earn { color: var(--green-dark); font-weight: 600; font-family: 'DM Mono', monospace; }
   .year-table tr:last-child td { border-bottom: none; }
   .year-table tr.cur-week td { background: var(--green-light); }
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--text3); font-size: 14px; line-height: 1.6; }
 
-  .empty-state { text-align: center; padding: 40px 20px; color: var(--text3); font-size: 14px; }
+  /* ── STATS SCREEN ── */
+  .month-scroller { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 8px; margin-bottom: 14px; scrollbar-width: none; }
+  .month-scroller::-webkit-scrollbar { display: none; }
+  .month-chip { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .month-chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .big-stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 10px; }
+  .big-stat-card .bsl { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; font-weight: 500; }
+  .big-stat-card .bsv { font-size: 38px; font-weight: 600; font-family: 'DM Mono', monospace; letter-spacing: -1px; color: var(--text); }
+  .big-stat-card .bssub { font-size: 13px; color: var(--text2); margin-top: 4px; }
+  .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .mini-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; }
+  .mini-card .ml { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; font-weight: 500; }
+  .mini-card .mv { font-size: 20px; font-weight: 600; font-family: 'DM Mono', monospace; }
+  .mini-card .ms { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .stats-week-list { display: flex; flex-direction: column; gap: 6px; }
+  .stats-wk-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .stats-wk-row .swr-label { font-size: 13px; color: var(--text2); }
+  .stats-wk-row .swr-right { text-align: right; }
+  .stats-wk-row .swr-h { font-size: 13px; font-family: 'DM Mono', monospace; }
+  .stats-wk-row .swr-earn { font-size: 12px; color: var(--green-dark); font-weight: 600; font-family: 'DM Mono', monospace; }
 
-  /* SECTION LABEL */
-  .section-label { font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin: 16px 0 8px; }
+  /* ── SETTINGS SCREEN ── */
+  .settings-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; }
+  .settings-group-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; padding: 14px 16px 8px; }
+  .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; border-top: 1px solid var(--border); }
+  .settings-row .sr-left .sr-label { font-size: 15px; color: var(--text); }
+  .settings-row .sr-left .sr-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .rate-input { width: 90px; font-family: 'DM Mono', monospace; font-size: 16px; padding: 8px 10px; border: 1px solid var(--border2); border-radius: var(--radius-sm); background: var(--surface2); color: var(--text); text-align: right; outline: none; -webkit-appearance: none; }
+  .rate-input:focus { border-color: var(--blue); }
+  .save-msg { font-size: 12px; color: var(--green-dark); font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-top: 8px; text-align: center; }
+
+  /* ── QUICK FILL SCREEN ── */
+  .qf-day-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; margin-bottom: 14px; }
+  .qf-day-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border2); border-radius: 8px; background: var(--surface); cursor: pointer; font-family: 'DM Sans', sans-serif; gap: 2px; transition: all 0.15s; }
+  .qf-day-btn.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .qf-day-btn.has-data { border-color: var(--green); }
+  .qf-day-btn .qfd-name { font-size: 9px; font-weight: 500; color: inherit; }
+  .qf-day-btn .qfd-h { font-size: 10px; font-weight: 600; color: inherit; }
+  .template-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: all 0.15s; }
+  .chip.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .copy-week-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+  .copy-week-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .copy-week-row.selected { border-color: var(--blue); background: var(--blue-light); }
+  .copy-week-row .cwr-label { font-size: 13px; }
+  .copy-week-row .cwr-detail { font-size: 12px; color: var(--text3); font-family: 'DM Mono', monospace; }
 </style>
 </head>
 <body>
 <div id="app">
 
-  <!-- HOME -->
+  <!-- ══ HOME SCREEN ══ -->
   <div id="home-screen" class="screen active">
     <div class="top-bar">
       <h1>⏱ Time Tracker</h1>
       <button class="nav-btn" onclick="showYear()">Year view</button>
     </div>
-
     <div class="clock-card">
       <div class="time" id="live-clock">--:--:--</div>
       <div class="cdate" id="live-date"></div>
       <div class="status" id="clock-status">Not clocked in</div>
     </div>
-
     <button class="punch-btn in" id="main-btn" onclick="punch()">Clock In</button>
     <button class="ghost-btn" onclick="showManual(null)">+ Add past entry</button>
-
     <div class="stat-grid">
       <div class="stat-card">
         <div class="slabel">This week</div>
@@ -243,30 +210,25 @@
         <div class="ssub" id="stat-ot-label">–</div>
       </div>
     </div>
-
     <div id="ot-banner" class="ot-banner" style="display:none">
       <div class="otl">Overtime this week</div>
       <div class="otv" id="ot-earn">$0.00</div>
       <div class="ots" id="ot-detail"></div>
     </div>
-
-    <!-- WEEKLY HOURS BREAKDOWN -->
-    <div class="form-card" id="week-breakdown" style="margin-bottom:10px">
+    <div class="form-card" style="margin-bottom:10px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.6px">Weekly Hours</div>
-        <div style="font-size:13px;font-family:'DM Mono',monospace;color:var(--text)" id="week-prog-label">0h 0m / 43h</div>
+        <div style="font-size:13px;font-family:'DM Mono',monospace" id="week-prog-label">0h 0m / 43h</div>
       </div>
-      <div style="background:var(--surface2);border-radius:6px;height:8px;overflow:hidden;margin-bottom:10px">
-        <div id="week-prog-bar" style="height:100%;border-radius:6px;background:var(--green);width:0%;transition:width 0.4s ease"></div>
-      </div>
+      <div class="prog-bar-wrap"><div class="prog-bar-fill" id="week-prog-bar" style="width:0%"></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
         <div>
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Regular</div>
-          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--text)" id="week-reg-h">0h 0m</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace" id="week-reg-h">0h 0m</div>
         </div>
         <div style="border-left:1px solid var(--border);border-right:1px solid var(--border)">
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Overtime</div>
-          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--green)" id="week-ot-h">0h 0m</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--green)" id="week-ot-h">—</div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Remaining</div>
@@ -274,41 +236,32 @@
         </div>
       </div>
     </div>
-
     <div class="week-nav">
       <button class="wk-arrow" onclick="changeWeek(-1)">&#8592;</button>
       <span id="week-label">This week</span>
       <button class="wk-arrow" onclick="changeWeek(1)">&#8594;</button>
     </div>
-
     <div class="day-list" id="day-list"></div>
   </div>
 
-  <!-- DAY DETAIL -->
+  <!-- ══ DAY DETAIL SCREEN ══ -->
   <div id="day-screen" class="screen">
     <div class="day-header">
-      <div class="dback">
-        <button class="nav-btn" onclick="showHome()">&#8592; Back</button>
-      </div>
+      <div><button class="nav-btn" onclick="showHome()">&#8592; Back</button></div>
       <h2 id="day-title"></h2>
       <div class="dsub" id="day-subtitle"></div>
     </div>
-
-    <button class="ghost-btn" onclick="showManual(state.viewDay)" style="margin-bottom:12px">+ Add entry for this day</button>
-
+    <button class="ghost-btn" onclick="showManual(state.viewDay)">+ Add entry for this day</button>
     <div class="section-label" id="entries-label" style="display:none">Entries</div>
     <div class="entries" id="day-entries"></div>
-
     <div class="section-label">Note for this day</div>
     <div class="form-card">
-      <div class="form-row">
-        <textarea id="note-text" placeholder="What did you work on?"></textarea>
-      </div>
+      <div class="form-row"><textarea id="note-text" placeholder="What did you work on?"></textarea></div>
       <button class="primary-btn" onclick="saveNote()">Save note</button>
     </div>
   </div>
 
-  <!-- MANUAL ENTRY -->
+  <!-- ══ MANUAL ENTRY SCREEN ══ -->
   <div id="manual-screen" class="screen">
     <div class="top-bar">
       <button class="nav-btn" onclick="cancelManual()">&#8592; Back</button>
@@ -319,139 +272,233 @@
       <div style="font-size:14px;color:var(--text2)">Log hours for any date in the past year</div>
     </div>
     <div class="form-card">
-      <div class="form-row">
-        <label>Date</label>
-        <input type="date" id="m-date" />
-      </div>
-      <div class="form-row">
-        <label>Start time</label>
-        <input type="time" id="m-start" />
-      </div>
-      <div class="form-row">
-        <label>End time</label>
-        <input type="time" id="m-end" />
-      </div>
-      <div class="form-row">
-        <label>Note (optional)</label>
-        <textarea id="m-note" placeholder="What did you work on?"></textarea>
-      </div>
+      <div class="form-row"><label>Date</label><input type="date" id="m-date" /></div>
+      <div class="form-row"><label>Start time</label><input type="time" id="m-start" /></div>
+      <div class="form-row"><label>End time</label><input type="time" id="m-end" /></div>
+      <div class="form-row"><label>Note (optional)</label><textarea id="m-note" placeholder="What did you work on?"></textarea></div>
       <div class="form-error" id="m-error"></div>
       <button class="primary-btn" onclick="saveManual()">Save entry</button>
       <button class="secondary-btn" onclick="cancelManual()">Cancel</button>
     </div>
   </div>
 
-  <!-- YEAR VIEW -->
+  <!-- ══ YEAR VIEW SCREEN ══ -->
   <div id="year-screen" class="screen">
-    <div class="top-bar">
-      <h1>Year view</h1>
-      <button class="nav-btn" onclick="showHome()">&#8592; Back</button>
-    </div>
+    <div class="top-bar"><h1>Year view</h1><button class="nav-btn" onclick="showHome()">&#8592; Back</button></div>
     <div id="year-content"></div>
   </div>
 
+  <!-- ══ STATS SCREEN ══ -->
+  <div id="stats-screen" class="screen">
+    <div class="top-bar"><h1>📊 Statistics</h1></div>
+    <div class="month-scroller" id="month-scroller"></div>
+    <div class="big-stat-card">
+      <div class="bsl">Total Earned</div>
+      <div class="bsv" id="s-earn">$0.00</div>
+      <div class="bssub" id="s-earn-sub"></div>
+    </div>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <div class="ml">Hours Worked</div>
+        <div class="mv" id="s-hours">0h 0m</div>
+        <div class="ms" id="s-hours-sub"></div>
+      </div>
+      <div class="mini-card">
+        <div class="ml">Overtime</div>
+        <div class="mv" style="color:var(--green-dark)" id="s-ot">0h 0m</div>
+        <div class="ms" id="s-ot-sub"></div>
+      </div>
+      <div class="mini-card">
+        <div class="ml">Days Worked</div>
+        <div class="mv" id="s-days">0</div>
+        <div class="ms" id="s-days-sub"></div>
+      </div>
+      <div class="mini-card">
+        <div class="ml">Avg / Day</div>
+        <div class="mv" id="s-avg">—</div>
+        <div class="ms">hours per day</div>
+      </div>
+    </div>
+    <div class="section-label">Weeks this month</div>
+    <div class="stats-week-list" id="s-week-list"></div>
+  </div>
+
+  <!-- ══ SETTINGS SCREEN ══ -->
+  <div id="settings-screen" class="screen">
+    <div class="top-bar"><h1>⚙️ Settings</h1></div>
+    <div class="settings-group">
+      <div class="settings-group-label">Pay Rates</div>
+      <div class="settings-row">
+        <div class="sr-left">
+          <div class="sr-label">Regular Rate</div>
+          <div class="sr-sub">Per hour up to 43h/week</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:14px;color:var(--text2)">$</span>
+          <input class="rate-input" type="number" id="setting-rate" step="0.01" min="0" placeholder="17.18" />
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-left">
+          <div class="sr-label">Overtime Rate</div>
+          <div class="sr-sub">Per hour after 43h/week</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:14px;color:var(--text2)">$</span>
+          <input class="rate-input" type="number" id="setting-ot-rate" step="0.01" min="0" placeholder="20.00" />
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-left">
+          <div class="sr-label">Overtime Threshold</div>
+          <div class="sr-sub">Hours per week before OT</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input class="rate-input" type="number" id="setting-ot-threshold" step="1" min="1" placeholder="43" />
+          <span style="font-size:14px;color:var(--text2)">h</span>
+        </div>
+      </div>
+    </div>
+    <button class="primary-btn" onclick="saveSettings()">Save Settings</button>
+    <div class="save-msg" id="save-msg">✓ Settings saved</div>
+  </div>
+
+  <!-- ══ QUICK FILL SCREEN ══ -->
+  <div id="quickfill-screen" class="screen">
+    <div class="top-bar"><h1>⚡ Quick Fill</h1></div>
+
+    <div class="form-card">
+      <h3>1 · Select days to fill</h3>
+      <div class="qf-day-grid" id="qf-day-grid"></div>
+      <div style="font-size:12px;color:var(--text3)">Tap days to toggle. Green border = already has data.</div>
+    </div>
+
+    <div class="form-card">
+      <h3>2 · Choose a template</h3>
+      <div class="template-chips" id="qf-templates">
+        <button class="chip" onclick="selectTemplate(this,'09:00','17:00')">9–5 (8h)</button>
+        <button class="chip" onclick="selectTemplate(this,'08:00','16:00')">8–4 (8h)</button>
+        <button class="chip" onclick="selectTemplate(this,'07:00','15:00')">7–3 (8h)</button>
+        <button class="chip" onclick="selectTemplate(this,'08:00','17:00')">8–5 (9h)</button>
+        <button class="chip" onclick="selectTemplate(this,'09:00','18:00')">9–6 (9h)</button>
+        <button class="chip" onclick="selectTemplate(this,'06:00','14:00')">6–2 (8h)</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+        <div class="form-row" style="margin:0"><label>Custom start</label><input type="time" id="qf-start" /></div>
+        <div class="form-row" style="margin:0"><label>Custom end</label><input type="time" id="qf-end" /></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>3 · Or copy an existing week</h3>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:10px">Pick a past week to duplicate into the current week</div>
+      <div class="copy-week-list" id="copy-week-list"></div>
+    </div>
+
+    <button class="primary-btn" onclick="applyQuickFill()">Apply to Selected Days</button>
+    <button class="secondary-btn" onclick="switchTab('home')">Cancel</button>
+  </div>
+
+  <!-- ══ TAB BAR ══ -->
+  <nav class="tab-bar">
+    <button class="tab-item active" id="tab-home" onclick="switchTab('home')">
+      <span class="tab-icon">🏠</span>Home
+    </button>
+    <button class="tab-item" id="tab-stats" onclick="switchTab('stats')">
+      <span class="tab-icon">📊</span>Stats
+    </button>
+    <button class="tab-item" id="tab-quickfill" onclick="switchTab('quickfill')">
+      <span class="tab-icon">⚡</span>Quick Fill
+    </button>
+    <button class="tab-item" id="tab-settings" onclick="switchTab('settings')">
+      <span class="tab-icon">⚙️</span>Settings
+    </button>
+  </nav>
 </div>
+
 <script>
-const RATE = 17.18;
-const OT_RATE = 20;
-const OT_THRESHOLD = 43;
-let state = { clockedIn: false, clockInTime: null, weekOffset: 0, viewDay: null, manualFrom: null };
+// ── CONFIG (loaded from localStorage, overrideable in settings) ──
+let RATE = parseFloat(localStorage.getItem('wtt_rate') || '17.18');
+let OT_RATE = parseFloat(localStorage.getItem('wtt_ot_rate') || '20');
+let OT_THRESHOLD = parseFloat(localStorage.getItem('wtt_ot_threshold') || '43');
+
+let state = { clockedIn: false, clockInTime: null, weekOffset: 0, viewDay: null, manualFrom: null, activeTab: 'home' };
 let db = loadDb();
+let qfSelectedDays = new Set();
+let qfCopyWeek = null;
 
-function loadDb() {
-  try { return JSON.parse(localStorage.getItem('wtt_db') || '{}'); } catch(e) { return {}; }
-}
+function loadDb() { try { return JSON.parse(localStorage.getItem('wtt_db') || '{}'); } catch(e) { return {}; } }
 function saveDb() { localStorage.setItem('wtt_db', JSON.stringify(db)); }
-
 function dayKey(d) { return new Date(d).toISOString().slice(0,10); }
 function getDay(key) { if (!db[key]) db[key] = { entries: [], notes: [] }; return db[key]; }
 
 function getMondayOf(d) {
-  const dt = new Date(d);
-  const day = dt.getDay();
-  dt.setDate(dt.getDate() + (day === 0 ? -6 : 1 - day));
-  dt.setHours(0,0,0,0);
-  return dt;
+  const dt = new Date(d); const day = dt.getDay();
+  dt.setDate(dt.getDate() + (day === 0 ? -6 : 1 - day)); dt.setHours(0,0,0,0); return dt;
 }
 function weekDays(offset) {
-  const mon = getMondayOf(new Date());
-  mon.setDate(mon.getDate() + offset * 7);
-  return Array.from({length:7}, (_, i) => { const d = new Date(mon); d.setDate(d.getDate()+i); return d; });
+  const mon = getMondayOf(new Date()); mon.setDate(mon.getDate() + offset * 7);
+  return Array.from({length:7}, (_,i) => { const d = new Date(mon); d.setDate(d.getDate()+i); return d; });
 }
 function totalHoursForWeek(days) {
-  return days.reduce((acc, d) => acc + (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0), 0);
+  return days.reduce((acc,d) => acc + (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000,0), 0);
 }
 function calcEarnings(h) {
-  const reg = Math.min(h, OT_THRESHOLD);
-  const ot = Math.max(0, h - OT_THRESHOLD);
+  const reg = Math.min(h, OT_THRESHOLD), ot = Math.max(0, h - OT_THRESHOLD);
   return { reg, ot, earn: reg * RATE + ot * OT_RATE };
 }
-function fmtHM(h) {
-  const hh = Math.floor(h); const mm = Math.round((h-hh)*60);
-  return hh + 'h ' + (mm < 10 ? '0' : '') + mm + 'm';
-}
-function fmtTime(ts) { return new Date(ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
-function fmtDate(d) { return new Date(d).toLocaleDateString([], {weekday:'long',month:'long',day:'numeric'}); }
-function fmtShortDate(d) { return new Date(d).toLocaleDateString([], {month:'short',day:'numeric'}); }
+function fmtHM(h) { const hh = Math.floor(h), mm = Math.round((h-hh)*60); return hh+'h '+(mm<10?'0':'')+mm+'m'; }
+function fmtTime(ts) { return new Date(ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+function fmtDate(d) { return new Date(d).toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'}); }
+function fmtShortDate(d) { return new Date(d).toLocaleDateString([],{month:'short',day:'numeric'}); }
 
-// Live clock
+// ── CLOCK ──
 let clockInterval;
 function startClock() {
   function tick() {
     const now = new Date();
-    document.getElementById('live-clock').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    document.getElementById('live-clock').textContent = now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     document.getElementById('live-date').textContent = fmtDate(now);
     if (state.clockedIn) {
       const el = (now - state.clockInTime) / 3600000;
       document.getElementById('clock-status').textContent = 'Clocked in · ' + fmtHM(el) + ' elapsed';
     }
   }
-  tick();
-  clearInterval(clockInterval);
-  clockInterval = setInterval(tick, 1000);
+  tick(); clearInterval(clockInterval); clockInterval = setInterval(tick, 1000);
 }
 
+// ── PUNCH ──
 function punch() {
   const now = Date.now();
   if (!state.clockedIn) {
-    state.clockedIn = true;
-    state.clockInTime = now;
-    localStorage.setItem('wtt_active', JSON.stringify({start: now}));
+    state.clockedIn = true; state.clockInTime = now;
+    localStorage.setItem('wtt_active', JSON.stringify({start:now}));
     document.getElementById('main-btn').textContent = 'Clock Out';
     document.getElementById('main-btn').className = 'punch-btn out';
-    const s = document.getElementById('clock-status');
-    s.className = 'status active';
-    s.textContent = 'Clocked in · 0h 00m elapsed';
+    const s = document.getElementById('clock-status'); s.className = 'status active'; s.textContent = 'Clocked in · 0h 00m elapsed';
   } else {
     const key = dayKey(new Date(state.clockInTime));
-    getDay(key).entries.push({ start: state.clockInTime, end: now });
-    saveDb();
-    localStorage.removeItem('wtt_active');
-    state.clockedIn = false;
-    state.clockInTime = null;
+    getDay(key).entries.push({start: state.clockInTime, end: now});
+    saveDb(); localStorage.removeItem('wtt_active');
+    state.clockedIn = false; state.clockInTime = null;
     document.getElementById('main-btn').textContent = 'Clock In';
     document.getElementById('main-btn').className = 'punch-btn in';
-    const s = document.getElementById('clock-status');
-    s.className = 'status';
-    s.textContent = 'Not clocked in';
+    const s = document.getElementById('clock-status'); s.className = 'status'; s.textContent = 'Not clocked in';
     renderWeek();
   }
 }
 
+// ── RENDER WEEK (home) ──
 function renderWeek() {
   const days = weekDays(state.weekOffset);
-  const today = dayKey(new Date());
+  const todayK = dayKey(new Date());
   const isNow = state.weekOffset === 0;
-  const mon = days[0], sun = days[6];
-  document.getElementById('week-label').textContent = isNow ? 'This week' : fmtShortDate(mon) + ' – ' + fmtShortDate(sun);
-
+  document.getElementById('week-label').textContent = isNow ? 'This week' : fmtShortDate(days[0]) + ' – ' + fmtShortDate(days[6]);
   let totalH = totalHoursForWeek(days);
   if (state.clockedIn && isNow) totalH += (Date.now() - state.clockInTime) / 3600000;
   const { ot, earn } = calcEarnings(totalH);
-
   document.getElementById('stat-week').textContent = fmtHM(totalH);
   document.getElementById('stat-earn').textContent = '$' + earn.toFixed(2);
-
   if (ot > 0) {
     document.getElementById('ot-banner').style.display = 'block';
     document.getElementById('ot-earn').textContent = '$' + (ot * OT_RATE).toFixed(2);
@@ -461,222 +508,309 @@ function renderWeek() {
   } else {
     document.getElementById('ot-banner').style.display = 'none';
     document.getElementById('stat-ot-label').textContent = 'no overtime yet';
-    const remaining = OT_THRESHOLD - totalH;
-    document.getElementById('stat-sub').textContent = remaining > 0 ? (remaining.toFixed(1) + 'h to overtime') : '';
+    const rem = OT_THRESHOLD - totalH;
+    document.getElementById('stat-sub').textContent = rem > 0 ? rem.toFixed(1) + 'h to overtime' : '';
   }
-
-  // Weekly breakdown card
-  const regH = Math.min(totalH, OT_THRESHOLD);
-  const remH = Math.max(0, OT_THRESHOLD - totalH);
+  const regH = Math.min(totalH, OT_THRESHOLD), remH = Math.max(0, OT_THRESHOLD - totalH);
   const pct = Math.min(100, (totalH / OT_THRESHOLD) * 100);
-  const barColor = ot > 0 ? 'var(--green-dark)' : 'var(--green)';
-  document.getElementById('week-prog-label').textContent = fmtHM(totalH) + ' / 43h';
+  document.getElementById('week-prog-label').textContent = fmtHM(totalH) + ' / ' + OT_THRESHOLD + 'h';
   document.getElementById('week-prog-bar').style.width = pct + '%';
-  document.getElementById('week-prog-bar').style.background = barColor;
+  document.getElementById('week-prog-bar').style.background = ot > 0 ? 'var(--green-dark)' : 'var(--green)';
   document.getElementById('week-reg-h').textContent = fmtHM(regH);
   document.getElementById('week-ot-h').textContent = ot > 0 ? fmtHM(ot) : '—';
-  document.getElementById('week-ot-h').style.color = ot > 0 ? 'var(--green)' : 'var(--text3)';
+  document.getElementById('week-ot-h').style.color = ot > 0 ? 'var(--green-dark)' : 'var(--text3)';
   document.getElementById('week-rem-h').textContent = remH > 0 ? fmtHM(remH) : '✓ Done';
   document.getElementById('week-rem-h').style.color = remH > 0 ? 'var(--amber)' : 'var(--green)';
-
-  const hours = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0));
+  const hours = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000,0));
   const maxH = Math.max(...hours, 0.001);
-  const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const list = document.getElementById('day-list');
-  list.innerHTML = '';
-  days.forEach((d, i) => {
-    const k = dayKey(d);
-    const h = hours[i];
-    const hasNotes = (db[k]?.notes||[]).length > 0;
+  const DNAMES = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const list = document.getElementById('day-list'); list.innerHTML = '';
+  days.forEach((d,i) => {
+    const k = dayKey(d), h = hours[i], hasNotes = (db[k]?.notes||[]).length > 0;
     const row = document.createElement('div');
-    row.className = 'day-row' + (k === today ? ' today' : '');
-    row.innerHTML = `
-      <span class="dname">${DAYS[i]}</span>
-      <span class="ddate">${fmtShortDate(d)}</span>
-      <div class="dbar"><div class="dbar-fill" style="width:${Math.min(h/maxH*100,100)}%"></div></div>
-      <span class="dhours">${h > 0 ? fmtHM(h) : '—'}</span>
-      ${hasNotes ? '<span class="dot"></span>' : ''}
-    `;
+    row.className = 'day-row' + (k === todayK ? ' today' : '');
+    row.innerHTML = `<span class="dname">${DNAMES[i]}</span><span class="ddate">${fmtShortDate(d)}</span><div class="dbar"><div class="dbar-fill" style="width:${Math.min(h/maxH*100,100)}%"></div></div><span class="dhours">${h>0?fmtHM(h):'—'}</span>${hasNotes?'<span class="dot"></span>':''}`;
     row.onclick = () => showDay(d);
     list.appendChild(row);
   });
 }
 
-function showHome() {
+// ── NAVIGATION ──
+function switchTab(tab) {
+  state.activeTab = tab;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('home-screen').classList.add('active');
-  renderWeek();
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+  if (tab === 'home') { document.getElementById('home-screen').classList.add('active'); document.getElementById('tab-home').classList.add('active'); renderWeek(); }
+  else if (tab === 'stats') { document.getElementById('stats-screen').classList.add('active'); document.getElementById('tab-stats').classList.add('active'); renderStats(); }
+  else if (tab === 'settings') { document.getElementById('settings-screen').classList.add('active'); document.getElementById('tab-settings').classList.add('active'); loadSettingsUI(); }
+  else if (tab === 'quickfill') { document.getElementById('quickfill-screen').classList.add('active'); document.getElementById('tab-quickfill').classList.add('active'); renderQuickFill(); }
 }
+function showHome() { switchTab('home'); }
 
 function showDay(d) {
   state.viewDay = d;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('day-screen').classList.add('active');
-
   document.getElementById('day-title').textContent = fmtDate(d);
   const k = dayKey(d);
-  const entries = (db[k]?.entries || []).slice().sort((a,b) => a.start - b.start);
-  const notes = db[k]?.notes || [];
-  const totalH = entries.reduce((s,e) => s+(e.end-e.start)/3600000, 0);
-  document.getElementById('day-subtitle').textContent = totalH > 0 ? fmtHM(totalH) + ' worked this day' : 'No time logged yet';
-
-  const entDiv = document.getElementById('day-entries');
-  entDiv.innerHTML = '';
+  const entries = (db[k]?.entries||[]).slice().sort((a,b)=>a.start-b.start);
+  const notes = db[k]?.notes||[];
+  const totalH = entries.reduce((s,e)=>s+(e.end-e.start)/3600000,0);
+  document.getElementById('day-subtitle').textContent = totalH>0?fmtHM(totalH)+' worked this day':'No time logged yet';
+  const entDiv = document.getElementById('day-entries'); entDiv.innerHTML = '';
   document.getElementById('entries-label').style.display = entries.length > 0 ? 'block' : 'none';
-
-  entries.forEach((e, i) => {
-    const dur = (e.end - e.start) / 3600000;
-    const note = notes.find(n => n.entryIndex === i);
-    const card = document.createElement('div');
-    card.className = 'entry-card';
-    card.innerHTML = `
-      <div class="ei">
-        <div class="et">${fmtTime(e.start)} – ${fmtTime(e.end)}${e.manual ? '<span class="manual-badge">manual</span>' : ''}</div>
-        <div class="ed">${fmtHM(dur)}</div>
-        ${note ? `<div class="en">${note.text}</div>` : ''}
-      </div>
-      <button class="del-btn" onclick="deleteEntry('${k}',${i})">×</button>`;
+  entries.forEach((e,i) => {
+    const dur = (e.end-e.start)/3600000;
+    const note = notes.find(n=>n.entryIndex===i);
+    const card = document.createElement('div'); card.className = 'entry-card';
+    card.innerHTML = `<div class="ei"><div class="et">${fmtTime(e.start)} – ${fmtTime(e.end)}${e.manual?'<span class="manual-badge">manual</span>':''}</div><div class="ed">${fmtHM(dur)}</div>${note?`<div class="en">${note.text}</div>`:''}</div><div class="entry-actions"><button class="dup-btn" onclick="duplicateEntry('${k}',${i})">⧉ Copy</button><button class="del-btn" onclick="deleteEntry('${k}',${i})">×</button></div>`;
     entDiv.appendChild(card);
   });
-
-  const standaloneNotes = notes.filter(n => n.entryIndex === undefined);
-  if (standaloneNotes.length > 0) {
-    standaloneNotes.forEach((n, ni) => {
-      const card = document.createElement('div');
-      card.className = 'entry-card';
-      card.innerHTML = `<div class="ei"><div class="et">Note</div><div class="en">${n.text}</div></div>
-        <button class="del-btn" onclick="deleteStandaloneNote('${k}',${ni})">×</button>`;
-      entDiv.appendChild(card);
-    });
-  }
-
+  const standaloneNotes = notes.filter(n=>n.entryIndex===undefined);
+  standaloneNotes.forEach((n,ni) => {
+    const card = document.createElement('div'); card.className = 'entry-card';
+    card.innerHTML = `<div class="ei"><div class="et">Note</div><div class="en">${n.text}</div></div><button class="del-btn" onclick="deleteStandaloneNote('${k}',${ni})">×</button>`;
+    entDiv.appendChild(card);
+  });
   document.getElementById('note-text').value = '';
 }
 
 function deleteEntry(key, index) {
   if (!db[key]) return;
-  db[key].entries.splice(index, 1);
-  db[key].notes = (db[key].notes||[]).filter(n => n.entryIndex !== index).map(n => {
-    if (n.entryIndex > index) n.entryIndex--;
-    return n;
-  });
-  saveDb();
-  showDay(state.viewDay);
+  db[key].entries.splice(index,1);
+  db[key].notes = (db[key].notes||[]).filter(n=>n.entryIndex!==index).map(n=>{if(n.entryIndex>index)n.entryIndex--;return n;});
+  saveDb(); showDay(state.viewDay);
 }
-
 function deleteStandaloneNote(key, index) {
-  const standalone = (db[key]?.notes||[]).filter(n => n.entryIndex === undefined);
-  const target = standalone[index];
-  db[key].notes = db[key].notes.filter(n => n !== target);
-  saveDb();
-  showDay(state.viewDay);
+  const standalone=(db[key]?.notes||[]).filter(n=>n.entryIndex===undefined);
+  const target=standalone[index]; db[key].notes=db[key].notes.filter(n=>n!==target);
+  saveDb(); showDay(state.viewDay);
 }
-
+function duplicateEntry(key, index) {
+  const e = db[key].entries[index];
+  const dur = e.end - e.start;
+  const newStart = e.end, newEnd = e.end + dur;
+  getDay(key).entries.push({start:newStart, end:newEnd, manual:true});
+  db[key].entries.sort((a,b)=>a.start-b.start);
+  saveDb(); showDay(state.viewDay);
+}
 function saveNote() {
-  const txt = document.getElementById('note-text').value.trim();
-  if (!txt) return;
-  const k = dayKey(state.viewDay);
-  getDay(k).notes.push({ text: txt, ts: Date.now() });
-  saveDb();
-  document.getElementById('note-text').value = '';
-  showDay(state.viewDay);
+  const txt = document.getElementById('note-text').value.trim(); if (!txt) return;
+  const k = dayKey(state.viewDay); getDay(k).notes.push({text:txt, ts:Date.now()});
+  saveDb(); document.getElementById('note-text').value = ''; showDay(state.viewDay);
 }
-
 function changeWeek(dir) { state.weekOffset += dir; renderWeek(); }
 
+// ── MANUAL ENTRY ──
 function showManual(d) {
   state.manualFrom = d;
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('manual-screen').classList.add('active');
-
-  const today = new Date();
-  const yearAgo = new Date(); yearAgo.setFullYear(yearAgo.getFullYear()-1);
+  const today = new Date(), yearAgo = new Date(); yearAgo.setFullYear(yearAgo.getFullYear()-1);
   const dateInput = document.getElementById('m-date');
   dateInput.max = today.toISOString().slice(0,10);
   dateInput.min = yearAgo.toISOString().slice(0,10);
   dateInput.value = d ? dayKey(d) : today.toISOString().slice(0,10);
-  document.getElementById('m-start').value = '';
-  document.getElementById('m-end').value = '';
-  document.getElementById('m-note').value = '';
+  document.getElementById('m-start').value = ''; document.getElementById('m-end').value = ''; document.getElementById('m-note').value = '';
   document.getElementById('m-error').style.display = 'none';
 }
-
-function cancelManual() {
-  if (state.manualFrom) showDay(state.manualFrom);
-  else showHome();
-}
-
+function cancelManual() { if (state.manualFrom) showDay(state.manualFrom); else showHome(); }
 function saveManual() {
-  const dateVal = document.getElementById('m-date').value;
-  const startVal = document.getElementById('m-start').value;
-  const endVal = document.getElementById('m-end').value;
-  const noteVal = document.getElementById('m-note').value.trim();
-  const errEl = document.getElementById('m-error');
-
-  if (!dateVal || !startVal || !endVal) {
-    errEl.textContent = 'Please fill in the date, start time, and end time.';
-    errEl.style.display = 'block'; return;
-  }
-  const startTs = new Date(dateVal + 'T' + startVal).getTime();
-  const endTs = new Date(dateVal + 'T' + endVal).getTime();
-  if (endTs <= startTs) { errEl.textContent = 'End time must be after start time.'; errEl.style.display = 'block'; return; }
-  if ((endTs - startTs) > 16 * 3600000) { errEl.textContent = 'A single entry cannot exceed 16 hours.'; errEl.style.display = 'block'; return; }
-
-  errEl.style.display = 'none';
-  const day = getDay(dateVal);
-  const entryIndex = day.entries.length;
-  day.entries.push({ start: startTs, end: endTs, manual: true });
-  day.entries.sort((a, b) => a.start - b.start);
-  if (noteVal) day.notes.push({ text: noteVal, entryIndex, ts: Date.now() });
-  saveDb();
-  showDay(new Date(dateVal + 'T12:00:00'));
+  const dateVal=document.getElementById('m-date').value, startVal=document.getElementById('m-start').value, endVal=document.getElementById('m-end').value, noteVal=document.getElementById('m-note').value.trim();
+  const errEl=document.getElementById('m-error');
+  if (!dateVal||!startVal||!endVal) { errEl.textContent='Please fill in the date, start time, and end time.'; errEl.style.display='block'; return; }
+  const startTs=new Date(dateVal+'T'+startVal).getTime(), endTs=new Date(dateVal+'T'+endVal).getTime();
+  if (endTs<=startTs) { errEl.textContent='End time must be after start time.'; errEl.style.display='block'; return; }
+  if ((endTs-startTs)>16*3600000) { errEl.textContent='A single entry cannot exceed 16 hours.'; errEl.style.display='block'; return; }
+  errEl.style.display='none';
+  const day=getDay(dateVal), entryIndex=day.entries.length;
+  day.entries.push({start:startTs,end:endTs,manual:true}); day.entries.sort((a,b)=>a.start-b.start);
+  if (noteVal) day.notes.push({text:noteVal,entryIndex,ts:Date.now()});
+  saveDb(); showDay(new Date(dateVal+'T12:00:00'));
 }
 
+// ── YEAR VIEW ──
 function showYear() {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('year-screen').classList.add('active');
+  const weeks=[];
+  for (let w=-51;w<=0;w++) {
+    const days=weekDays(w), h=totalHoursForWeek(days);
+    if (h>0) { const {earn,ot}=calcEarnings(h); weeks.push({label:fmtShortDate(days[0])+' – '+fmtShortDate(days[6]),h,earn,ot,isCurrent:w===0}); }
+  }
+  const wrap=document.getElementById('year-content');
+  if (!weeks.length) { wrap.innerHTML='<div class="empty-state">No data yet.<br>Start logging time to see your year here.</div>'; return; }
+  let html=`<table class="year-table"><thead><tr><th>Week</th><th>Hours</th><th>Earnings</th></tr></thead><tbody>`;
+  weeks.slice().reverse().forEach(w=>{
+    html+=`<tr class="${w.isCurrent?'cur-week':''}"><td>${w.label}${w.isCurrent?' <span style="font-size:10px;color:var(--green)">current</span>':''}</td><td>${fmtHM(w.h)}</td><td class="earn">$${w.earn.toFixed(2)}</td></tr>`;
+  });
+  html+='</tbody></table>'; wrap.innerHTML=html;
+}
 
-  const weeks = [];
-  for (let w = -51; w <= 0; w++) {
-    const days = weekDays(w);
-    const h = totalHoursForWeek(days);
-    if (h > 0) {
-      const { earn, ot } = calcEarnings(h);
-      weeks.push({ label: fmtShortDate(days[0]) + ' – ' + fmtShortDate(days[6]), h, earn, ot, isCurrent: w === 0 });
+// ── STATS SCREEN ──
+function renderStats() {
+  const now = new Date();
+  // Build list of last 12 months
+  const months = [];
+  for (let i=11;i>=0;i--) { const d=new Date(now.getFullYear(),now.getMonth()-i,1); months.push({year:d.getFullYear(),month:d.getMonth()}); }
+  const scroller = document.getElementById('month-scroller'); scroller.innerHTML='';
+  months.forEach((m,idx) => {
+    const label=new Date(m.year,m.month,1).toLocaleDateString([],{month:'short',year:'numeric'});
+    const chip=document.createElement('button'); chip.className='month-chip'+(idx===months.length-1?' active':'');
+    chip.textContent=label; chip.onclick=()=>{ document.querySelectorAll('.month-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); renderMonthStats(m.year,m.month); };
+    scroller.appendChild(chip);
+  });
+  renderMonthStats(now.getFullYear(), now.getMonth());
+  scroller.scrollLeft = scroller.scrollWidth;
+}
+
+function renderMonthStats(year, month) {
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  let totalH=0, totalEarn=0, totalOT=0, daysWorked=0;
+  const weekMap={};
+  for (let d=1;d<=daysInMonth;d++) {
+    const k=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayH=(db[k]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
+    if (dayH>0) { totalH+=dayH; daysWorked++; }
+  }
+  // Calculate earnings week by week within the month
+  const firstDay=new Date(year,month,1), lastDay=new Date(year,month,daysInMonth);
+  let cursor=getMondayOf(firstDay);
+  const weeksData=[];
+  while (cursor<=lastDay) {
+    const wdays=Array.from({length:7},(_,i)=>{const d=new Date(cursor);d.setDate(d.getDate()+i);return d;});
+    const wH=totalHoursForWeek(wdays);
+    // Only count hours that fall within the month
+    let monthH=0;
+    wdays.forEach(d=>{
+      if (d.getMonth()===month&&d.getFullYear()===year) monthH+=(db[dayKey(d)]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
+    });
+    if (monthH>0) {
+      const {earn,ot}=calcEarnings(wH);
+      // Prorate earnings for days in this month
+      const monthFrac = wH>0 ? monthH/wH : 0;
+      const prorated = earn * monthFrac;
+      const otProrated = ot * monthFrac;
+      totalEarn+=prorated; totalOT+=otProrated;
+      weeksData.push({label:fmtShortDate(wdays[0])+' – '+fmtShortDate(wdays[6]), h:monthH, earn:prorated, ot:otProrated});
+    }
+    cursor=new Date(cursor); cursor.setDate(cursor.getDate()+7);
+  }
+  document.getElementById('s-earn').textContent='$'+totalEarn.toFixed(2);
+  document.getElementById('s-earn-sub').textContent='Regular: $'+(totalEarn-(totalOT*OT_RATE)).toFixed(2)+'  ·  OT: $'+(totalOT*OT_RATE).toFixed(2);
+  document.getElementById('s-hours').textContent=fmtHM(totalH);
+  document.getElementById('s-hours-sub').textContent=daysWorked+' days worked';
+  document.getElementById('s-ot').textContent=totalOT>0?fmtHM(totalOT):'None';
+  document.getElementById('s-ot-sub').textContent=totalOT>0?'$'+(totalOT*OT_RATE).toFixed(2)+' earned':'Keep going!';
+  document.getElementById('s-days').textContent=daysWorked;
+  document.getElementById('s-days-sub').textContent=daysWorked>0?'of '+daysInMonth+' days':'';
+  document.getElementById('s-avg').textContent=daysWorked>0?fmtHM(totalH/daysWorked):'—';
+  const wkList=document.getElementById('s-week-list'); wkList.innerHTML='';
+  if (!weeksData.length) { wkList.innerHTML='<div class="empty-state" style="padding:20px">No data this month</div>'; return; }
+  weeksData.forEach(w=>{
+    const row=document.createElement('div'); row.className='stats-wk-row';
+    row.innerHTML=`<div class="swr-label">${w.label}</div><div class="swr-right"><div class="swr-h">${fmtHM(w.h)}</div><div class="swr-earn">$${w.earn.toFixed(2)}</div></div>`;
+    wkList.appendChild(row);
+  });
+}
+
+// ── SETTINGS ──
+function loadSettingsUI() {
+  document.getElementById('setting-rate').value = RATE;
+  document.getElementById('setting-ot-rate').value = OT_RATE;
+  document.getElementById('setting-ot-threshold').value = OT_THRESHOLD;
+}
+function saveSettings() {
+  const r=parseFloat(document.getElementById('setting-rate').value);
+  const otr=parseFloat(document.getElementById('setting-ot-rate').value);
+  const ott=parseFloat(document.getElementById('setting-ot-threshold').value);
+  if (isNaN(r)||r<=0||isNaN(otr)||otr<=0||isNaN(ott)||ott<=0) return;
+  RATE=r; OT_RATE=otr; OT_THRESHOLD=ott;
+  localStorage.setItem('wtt_rate',RATE); localStorage.setItem('wtt_ot_rate',OT_RATE); localStorage.setItem('wtt_ot_threshold',OT_THRESHOLD);
+  const msg=document.getElementById('save-msg'); msg.style.opacity='1'; setTimeout(()=>msg.style.opacity='0',2000);
+  renderWeek();
+}
+
+// ── QUICK FILL ──
+function renderQuickFill() {
+  qfSelectedDays.clear(); qfCopyWeek=null;
+  const days=weekDays(0);
+  const grid=document.getElementById('qf-day-grid'); grid.innerHTML='';
+  const DNAMES=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  days.forEach((d,i)=>{
+    const k=dayKey(d), h=(db[k]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
+    const btn=document.createElement('button'); btn.className='qf-day-btn'+(h>0?' has-data':'');
+    btn.innerHTML=`<span class="qfd-name">${DNAMES[i]}</span><span class="qfd-h">${h>0?Math.round(h)+'h':'—'}</span>`;
+    btn.onclick=()=>{ if (qfSelectedDays.has(k)) { qfSelectedDays.delete(k); btn.classList.remove('selected'); } else { qfSelectedDays.add(k); btn.classList.add('selected'); } };
+    grid.appendChild(btn);
+  });
+  // Populate copy-week list with past weeks that have data
+  const cwList=document.getElementById('copy-week-list'); cwList.innerHTML='';
+  for (let w=-1;w>=-12;w--) {
+    const wdays=weekDays(w), wH=totalHoursForWeek(wdays);
+    if (wH>0) {
+      const row=document.createElement('div'); row.className='copy-week-row';
+      row.innerHTML=`<span class="cwr-label">${fmtShortDate(wdays[0])} – ${fmtShortDate(wdays[6])}</span><span class="cwr-detail">${fmtHM(wH)}</span>`;
+      row.onclick=()=>{ document.querySelectorAll('.copy-week-row').forEach(r=>r.classList.remove('selected')); row.classList.add('selected'); qfCopyWeek=w; };
+      cwList.appendChild(row);
     }
   }
+  if (!cwList.children.length) cwList.innerHTML='<div style="font-size:13px;color:var(--text3);padding:10px 0">No past weeks with data yet.</div>';
+  document.getElementById('qf-start').value=''; document.getElementById('qf-end').value='';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+}
 
-  const wrap = document.getElementById('year-content');
-  if (!weeks.length) {
-    wrap.innerHTML = '<div class="empty-state">No data yet.<br>Start logging time to see your year here.</div>';
-    return;
+function selectTemplate(el, start, end) {
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected')); el.classList.add('selected');
+  document.getElementById('qf-start').value=start; document.getElementById('qf-end').value=end; qfCopyWeek=null;
+  document.querySelectorAll('.copy-week-row').forEach(r=>r.classList.remove('selected'));
+}
+
+function applyQuickFill() {
+  if (qfCopyWeek!==null) {
+    // Copy all entries from source week into current week
+    const srcDays=weekDays(qfCopyWeek), tgtDays=weekDays(0);
+    let count=0;
+    srcDays.forEach((sd,i)=>{
+      const sk=dayKey(sd), tk=dayKey(tgtDays[i]);
+      const srcEntries=(db[sk]?.entries||[]);
+      if (srcEntries.length>0) {
+        srcEntries.forEach(e=>{
+          const dur=e.end-e.start;
+          const srcDate=new Date(e.start), tgtDate=new Date(tgtDays[i]);
+          tgtDate.setHours(srcDate.getHours(),srcDate.getMinutes(),0,0);
+          const newStart=tgtDate.getTime(), newEnd=newStart+dur;
+          getDay(tk).entries.push({start:newStart,end:newEnd,manual:true});
+          count++;
+        });
+        getDay(tk).entries.sort((a,b)=>a.start-b.start);
+      }
+    });
+    saveDb();
+    alert(`Copied ${count} entries from that week into this week ✓`);
+    switchTab('home'); return;
   }
-
-  let html = `<table class="year-table"><thead><tr><th>Week</th><th>Hours</th><th>Earnings</th></tr></thead><tbody>`;
-  weeks.slice().reverse().forEach(w => {
-    html += `<tr class="${w.isCurrent ? 'cur-week' : ''}">
-      <td>${w.label}${w.isCurrent ? ' <span style="font-size:10px;color:var(--green)">current</span>' : ''}</td>
-      <td>${fmtHM(w.h)}</td>
-      <td class="earn">$${w.earn.toFixed(2)}</td>
-    </tr>`;
+  const startVal=document.getElementById('qf-start').value, endVal=document.getElementById('qf-end').value;
+  if (!startVal||!endVal) { alert('Please choose a template or set custom start/end times.'); return; }
+  if (qfSelectedDays.size===0) { alert('Please select at least one day.'); return; }
+  qfSelectedDays.forEach(k=>{
+    const startTs=new Date(k+'T'+startVal).getTime(), endTs=new Date(k+'T'+endVal).getTime();
+    if (endTs>startTs) { getDay(k).entries.push({start:startTs,end:endTs,manual:true}); getDay(k).entries.sort((a,b)=>a.start-b.start); }
   });
-  html += '</tbody></table>';
-  wrap.innerHTML = html;
+  saveDb();
+  alert(`Applied to ${qfSelectedDays.size} day(s) ✓`);
+  switchTab('home');
 }
 
-// Restore active session if app was closed mid-shift
-const active = JSON.parse(localStorage.getItem('wtt_active') || 'null');
+// ── RESTORE ACTIVE SESSION ──
+const active = JSON.parse(localStorage.getItem('wtt_active')||'null');
 if (active) {
-  state.clockedIn = true;
-  state.clockInTime = active.start;
-  document.getElementById('main-btn').textContent = 'Clock Out';
-  document.getElementById('main-btn').className = 'punch-btn out';
-  const s = document.getElementById('clock-status');
-  s.className = 'status active';
+  state.clockedIn=true; state.clockInTime=active.start;
+  document.getElementById('main-btn').textContent='Clock Out'; document.getElementById('main-btn').className='punch-btn out';
+  const s=document.getElementById('clock-status'); s.className='status active';
 }
-
-startClock();
-renderWeek();
+startClock(); renderWeek();
 </script>
 </body>
 </html>
+
