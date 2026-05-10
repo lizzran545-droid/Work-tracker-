@@ -31,18 +31,15 @@
   .screen { display: none; flex-direction: column; flex: 1; padding: 0 16px 32px; }
   .screen.active { display: flex; }
 
-  /* TOP BAR */
   .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 52px 0 20px; }
   .top-bar h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
   .nav-btn { background: none; border: none; cursor: pointer; font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--blue); padding: 6px 0; }
 
-  /* TAB BAR */
   .tab-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: var(--surface); border-top: 1px solid var(--border); display: flex; z-index: 100; padding-bottom: env(safe-area-inset-bottom,0px); }
   .tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0 8px; cursor: pointer; border: none; background: none; font-family: 'DM Sans', sans-serif; color: var(--text3); font-size: 10px; font-weight: 500; gap: 3px; transition: color 0.15s; }
   .tab-item.active { color: var(--blue); }
   .tab-icon { font-size: 20px; line-height: 1; }
 
-  /* CLOCK CARD */
   .clock-card { background: var(--text); color: var(--bg); border-radius: var(--radius); padding: 24px 20px 20px; margin-bottom: 12px; position: relative; overflow: hidden; }
   .clock-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.04); }
   .clock-card .time { font-family: 'DM Mono', monospace; font-size: 42px; font-weight: 500; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; color: inherit; }
@@ -50,7 +47,6 @@
   .clock-card .status { font-size: 13px; font-weight: 500; opacity: 0.7; min-height: 18px; }
   .clock-card .status.active { opacity: 1; color: #5DCAA5; }
 
-  /* BUTTONS */
   .punch-btn { width: 100%; padding: 16px; font-size: 16px; font-weight: 600; font-family: 'DM Sans', sans-serif; border-radius: var(--radius); border: none; cursor: pointer; margin-bottom: 10px; transition: transform 0.1s, opacity 0.1s; }
   .punch-btn:active { transform: scale(0.98); opacity: 0.9; }
   .punch-btn.in { background: var(--green); color: #fff; }
@@ -61,7 +57,6 @@
   .primary-btn:active { opacity: 0.85; }
   .secondary-btn { width: 100%; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border2); background: none; color: var(--text); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px; }
 
-  /* STAT GRID (home) */
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   .stat-card { background: var(--surface); border-radius: var(--radius-sm); padding: 14px 16px; border: 1px solid var(--border); }
   .stat-card .slabel { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; font-weight: 500; }
@@ -69,24 +64,29 @@
   .stat-card .ssub { font-size: 12px; color: var(--text3); margin-top: 3px; }
   .stat-card.earn .sval { font-size: 20px; color: var(--green-dark); }
 
-  /* OT BANNER */
   .ot-banner { background: var(--green-light); border: 1px solid rgba(29,158,117,0.25); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 10px; }
   .ot-banner .otl { font-size: 11px; color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; margin-bottom: 4px; }
   .ot-banner .otv { font-size: 22px; font-weight: 600; color: var(--green-dark); font-family: 'DM Mono', monospace; }
   .ot-banner .ots { font-size: 12px; color: var(--green-text); margin-top: 2px; }
 
-  /* WEEK NAV */
+  .monthly-banner { background: var(--blue-light); border: 1px solid rgba(24,95,165,0.2); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .monthly-banner .mbl { }
+  .monthly-banner .mb-label { font-size: 11px; color: var(--blue); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; margin-bottom: 4px; }
+  .monthly-banner .mb-val { font-size: 26px; font-weight: 600; color: var(--blue); font-family: 'DM Mono', monospace; }
+  .monthly-banner .mb-sub { font-size: 12px; color: var(--blue); opacity: 0.7; margin-top: 3px; }
+  .monthly-banner .mb-ot { text-align: right; }
+  .monthly-banner .mb-ot-label { font-size: 10px; color: var(--blue); opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .monthly-banner .mb-ot-val { font-size: 16px; font-weight: 600; color: var(--blue); font-family: 'DM Mono', monospace; }
+
   .week-nav { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 10px; }
   .week-nav span { font-size: 13px; font-weight: 500; color: var(--text2); }
   .wk-arrow { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: 15px; color: var(--text); display: flex; align-items: center; justify-content: center; }
 
-  /* WEEKLY BREAKDOWN CARD */
   .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
   .form-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
   .prog-bar-wrap { background: var(--surface2); border-radius: 6px; height: 8px; overflow: hidden; margin-bottom: 10px; }
   .prog-bar-fill { height: 100%; border-radius: 6px; background: var(--green); transition: width 0.4s ease; }
 
-  /* DAY LIST */
   .day-list { display: flex; flex-direction: column; gap: 6px; }
   .day-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
   .day-row.today { border-color: var(--green); }
@@ -97,7 +97,6 @@
   .day-row .dhours { font-size: 13px; font-family: 'DM Mono', monospace; min-width: 58px; text-align: right; }
   .day-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 
-  /* DAY SCREEN */
   .day-header { padding: 52px 0 16px; }
   .day-header h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 4px; }
   .day-header .dsub { font-size: 14px; color: var(--text2); }
@@ -112,7 +111,6 @@
   .entry-actions { display: flex; align-items: center; gap: 6px; }
   .dup-btn { background: none; border: 1px solid var(--border2); border-radius: 6px; cursor: pointer; color: var(--text2); font-size: 12px; padding: 3px 8px; font-family: 'DM Sans', sans-serif; }
 
-  /* FORM */
   .form-row { margin-bottom: 12px; }
   .form-row label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 5px; font-weight: 500; }
   .form-row input[type="date"], .form-row input[type="time"], .form-row textarea, .form-row select, .form-row input[type="number"] {
@@ -124,7 +122,6 @@
   .form-error { font-size: 12px; color: var(--red); margin-top: 8px; display: none; }
   .section-label { font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin: 16px 0 8px; }
 
-  /* YEAR SCREEN */
   .year-table { width: 100%; border-collapse: collapse; }
   .year-table th { text-align: left; padding: 8px 10px; font-size: 11px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
   .year-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); font-size: 13px; }
@@ -134,7 +131,6 @@
   .year-table tr.cur-week td { background: var(--green-light); }
   .empty-state { text-align: center; padding: 40px 20px; color: var(--text3); font-size: 14px; line-height: 1.6; }
 
-  /* ── STATS SCREEN ── */
   .month-scroller { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 8px; margin-bottom: 14px; scrollbar-width: none; }
   .month-scroller::-webkit-scrollbar { display: none; }
   .month-chip { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
@@ -154,8 +150,8 @@
   .stats-wk-row .swr-right { text-align: right; }
   .stats-wk-row .swr-h { font-size: 13px; font-family: 'DM Mono', monospace; }
   .stats-wk-row .swr-earn { font-size: 12px; color: var(--green-dark); font-weight: 600; font-family: 'DM Mono', monospace; }
+  .stats-wk-row.has-ot { border-color: var(--green); }
 
-  /* ── SETTINGS SCREEN ── */
   .settings-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; }
   .settings-group-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; padding: 14px 16px 8px; }
   .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; border-top: 1px solid var(--border); }
@@ -165,7 +161,6 @@
   .rate-input:focus { border-color: var(--blue); }
   .save-msg { font-size: 12px; color: var(--green-dark); font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-top: 8px; text-align: center; }
 
-  /* ── QUICK FILL SCREEN ── */
   .qf-day-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; margin-bottom: 14px; }
   .qf-day-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border2); border-radius: 8px; background: var(--surface); cursor: pointer; font-family: 'DM Sans', sans-serif; gap: 2px; transition: all 0.15s; }
   .qf-day-btn.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
@@ -185,7 +180,7 @@
 <body>
 <div id="app">
 
-  <!-- ══ HOME SCREEN ══ -->
+  <!-- ══ HOME ══ -->
   <div id="home-screen" class="screen active">
     <div class="top-bar">
       <h1>⏱ Time Tracker</h1>
@@ -198,6 +193,7 @@
     </div>
     <button class="punch-btn in" id="main-btn" onclick="punch()">Clock In</button>
     <button class="ghost-btn" onclick="showManual(null)">+ Add past entry</button>
+
     <div class="stat-grid">
       <div class="stat-card">
         <div class="slabel">This week</div>
@@ -205,20 +201,34 @@
         <div class="ssub" id="stat-sub">–</div>
       </div>
       <div class="stat-card earn">
-        <div class="slabel">Earnings</div>
+        <div class="slabel">OT This Week</div>
         <div class="sval" id="stat-earn">$0.00</div>
         <div class="ssub" id="stat-ot-label">–</div>
       </div>
     </div>
+
     <div id="ot-banner" class="ot-banner" style="display:none">
       <div class="otl">Overtime this week</div>
       <div class="otv" id="ot-earn">$0.00</div>
       <div class="ots" id="ot-detail"></div>
     </div>
+
+    <div class="monthly-banner">
+      <div class="mbl">
+        <div class="mb-label">Monthly Pay Estimate</div>
+        <div class="mb-val" id="monthly-total">$2,750.00</div>
+        <div class="mb-sub" id="monthly-detail">Base $2,750 · No overtime yet</div>
+      </div>
+      <div class="mb-ot">
+        <div class="mb-ot-label">OT Hours</div>
+        <div class="mb-ot-val" id="monthly-ot-hours">0h 0m</div>
+      </div>
+    </div>
+
     <div class="form-card" style="margin-bottom:10px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.6px">Weekly Hours</div>
-        <div style="font-size:13px;font-family:'DM Mono',monospace" id="week-prog-label">0h 0m / 43h</div>
+        <div style="font-size:13px;font-family:'DM Mono',monospace" id="week-prog-label">0h 0m / 45h</div>
       </div>
       <div class="prog-bar-wrap"><div class="prog-bar-fill" id="week-prog-bar" style="width:0%"></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
@@ -228,14 +238,15 @@
         </div>
         <div style="border-left:1px solid var(--border);border-right:1px solid var(--border)">
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Overtime</div>
-          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--green)" id="week-ot-h">—</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace" id="week-ot-h">—</div>
         </div>
         <div>
           <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Remaining</div>
-          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--amber)" id="week-rem-h">43h 0m</div>
+          <div style="font-size:15px;font-family:'DM Mono',monospace;color:var(--amber)" id="week-rem-h">45h 0m</div>
         </div>
       </div>
     </div>
+
     <div class="week-nav">
       <button class="wk-arrow" onclick="changeWeek(-1)">&#8592;</button>
       <span id="week-label">This week</span>
@@ -244,7 +255,7 @@
     <div class="day-list" id="day-list"></div>
   </div>
 
-  <!-- ══ DAY DETAIL SCREEN ══ -->
+  <!-- ══ DAY DETAIL ══ -->
   <div id="day-screen" class="screen">
     <div class="day-header">
       <div><button class="nav-btn" onclick="showHome()">&#8592; Back</button></div>
@@ -261,7 +272,7 @@
     </div>
   </div>
 
-  <!-- ══ MANUAL ENTRY SCREEN ══ -->
+  <!-- ══ MANUAL ENTRY ══ -->
   <div id="manual-screen" class="screen">
     <div class="top-bar">
       <button class="nav-btn" onclick="cancelManual()">&#8592; Back</button>
@@ -282,20 +293,20 @@
     </div>
   </div>
 
-  <!-- ══ YEAR VIEW SCREEN ══ -->
+  <!-- ══ YEAR VIEW ══ -->
   <div id="year-screen" class="screen">
     <div class="top-bar"><h1>Year view</h1><button class="nav-btn" onclick="showHome()">&#8592; Back</button></div>
     <div id="year-content"></div>
   </div>
 
-  <!-- ══ STATS SCREEN ══ -->
+  <!-- ══ STATS ══ -->
   <div id="stats-screen" class="screen">
     <div class="top-bar"><h1>📊 Statistics</h1></div>
     <div class="month-scroller" id="month-scroller"></div>
     <div class="big-stat-card">
-      <div class="bsl">Total Earned</div>
-      <div class="bsv" id="s-earn">$0.00</div>
-      <div class="bssub" id="s-earn-sub"></div>
+      <div class="bsl">Total Monthly Pay</div>
+      <div class="bsv" id="s-earn">$2,750.00</div>
+      <div class="bssub" id="s-earn-sub">Base $2,750 · No overtime</div>
     </div>
     <div class="mini-grid">
       <div class="mini-card">
@@ -304,8 +315,8 @@
         <div class="ms" id="s-hours-sub"></div>
       </div>
       <div class="mini-card">
-        <div class="ml">Overtime</div>
-        <div class="mv" style="color:var(--green-dark)" id="s-ot">0h 0m</div>
+        <div class="ml">OT Hours</div>
+        <div class="mv" style="color:var(--green-dark)" id="s-ot">—</div>
         <div class="ms" id="s-ot-sub"></div>
       </div>
       <div class="mini-card">
@@ -314,48 +325,48 @@
         <div class="ms" id="s-days-sub"></div>
       </div>
       <div class="mini-card">
-        <div class="ml">Avg / Day</div>
-        <div class="mv" id="s-avg">—</div>
-        <div class="ms">hours per day</div>
+        <div class="ml">OT Bonus</div>
+        <div class="mv" style="color:var(--green-dark)" id="s-ot-earn">$0.00</div>
+        <div class="ms">on top of base</div>
       </div>
     </div>
     <div class="section-label">Weeks this month</div>
     <div class="stats-week-list" id="s-week-list"></div>
   </div>
 
-  <!-- ══ SETTINGS SCREEN ══ -->
+  <!-- ══ SETTINGS ══ -->
   <div id="settings-screen" class="screen">
     <div class="top-bar"><h1>⚙️ Settings</h1></div>
     <div class="settings-group">
-      <div class="settings-group-label">Pay Rates</div>
+      <div class="settings-group-label">Monthly Salary</div>
       <div class="settings-row">
         <div class="sr-left">
-          <div class="sr-label">Regular Rate</div>
-          <div class="sr-sub">Per hour up to 43h/week</div>
+          <div class="sr-label">Base Monthly Pay</div>
+          <div class="sr-sub">Fixed — always received</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px">
           <span style="font-size:14px;color:var(--text2)">$</span>
-          <input class="rate-input" type="number" id="setting-rate" step="0.01" min="0" placeholder="17.18" />
+          <input class="rate-input" type="number" id="setting-monthly-salary" step="1" min="0" placeholder="2750" />
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-left">
+          <div class="sr-label">OT Threshold / Week</div>
+          <div class="sr-sub">Hours/week before OT kicks in</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input class="rate-input" type="number" id="setting-ot-threshold" step="1" min="1" placeholder="45" />
+          <span style="font-size:14px;color:var(--text2)">h</span>
         </div>
       </div>
       <div class="settings-row">
         <div class="sr-left">
           <div class="sr-label">Overtime Rate</div>
-          <div class="sr-sub">Per hour after 43h/week</div>
+          <div class="sr-sub">Extra pay per OT hour</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px">
           <span style="font-size:14px;color:var(--text2)">$</span>
-          <input class="rate-input" type="number" id="setting-ot-rate" step="0.01" min="0" placeholder="20.00" />
-        </div>
-      </div>
-      <div class="settings-row">
-        <div class="sr-left">
-          <div class="sr-label">Overtime Threshold</div>
-          <div class="sr-sub">Hours per week before OT</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <input class="rate-input" type="number" id="setting-ot-threshold" step="1" min="1" placeholder="43" />
-          <span style="font-size:14px;color:var(--text2)">h</span>
+          <input class="rate-input" type="number" id="setting-ot-rate" step="0.01" min="0" placeholder="20" />
         </div>
       </div>
     </div>
@@ -363,19 +374,17 @@
     <div class="save-msg" id="save-msg">✓ Settings saved</div>
   </div>
 
-  <!-- ══ QUICK FILL SCREEN ══ -->
+  <!-- ══ QUICK FILL ══ -->
   <div id="quickfill-screen" class="screen">
     <div class="top-bar"><h1>⚡ Quick Fill</h1></div>
-
     <div class="form-card">
       <h3>1 · Select days to fill</h3>
       <div class="qf-day-grid" id="qf-day-grid"></div>
       <div style="font-size:12px;color:var(--text3)">Tap days to toggle. Green border = already has data.</div>
     </div>
-
     <div class="form-card">
       <h3>2 · Choose a template</h3>
-      <div class="template-chips" id="qf-templates">
+      <div class="template-chips">
         <button class="chip" onclick="selectTemplate(this,'09:00','17:00')">9–5 (8h)</button>
         <button class="chip" onclick="selectTemplate(this,'08:00','16:00')">8–4 (8h)</button>
         <button class="chip" onclick="selectTemplate(this,'07:00','15:00')">7–3 (8h)</button>
@@ -388,39 +397,29 @@
         <div class="form-row" style="margin:0"><label>Custom end</label><input type="time" id="qf-end" /></div>
       </div>
     </div>
-
     <div class="form-card">
       <h3>3 · Or copy an existing week</h3>
       <div style="font-size:13px;color:var(--text2);margin-bottom:10px">Pick a past week to duplicate into the current week</div>
       <div class="copy-week-list" id="copy-week-list"></div>
     </div>
-
     <button class="primary-btn" onclick="applyQuickFill()">Apply to Selected Days</button>
     <button class="secondary-btn" onclick="switchTab('home')">Cancel</button>
   </div>
 
   <!-- ══ TAB BAR ══ -->
   <nav class="tab-bar">
-    <button class="tab-item active" id="tab-home" onclick="switchTab('home')">
-      <span class="tab-icon">🏠</span>Home
-    </button>
-    <button class="tab-item" id="tab-stats" onclick="switchTab('stats')">
-      <span class="tab-icon">📊</span>Stats
-    </button>
-    <button class="tab-item" id="tab-quickfill" onclick="switchTab('quickfill')">
-      <span class="tab-icon">⚡</span>Quick Fill
-    </button>
-    <button class="tab-item" id="tab-settings" onclick="switchTab('settings')">
-      <span class="tab-icon">⚙️</span>Settings
-    </button>
+    <button class="tab-item active" id="tab-home" onclick="switchTab('home')"><span class="tab-icon">🏠</span>Home</button>
+    <button class="tab-item" id="tab-stats" onclick="switchTab('stats')"><span class="tab-icon">📊</span>Stats</button>
+    <button class="tab-item" id="tab-quickfill" onclick="switchTab('quickfill')"><span class="tab-icon">⚡</span>Quick Fill</button>
+    <button class="tab-item" id="tab-settings" onclick="switchTab('settings')"><span class="tab-icon">⚙️</span>Settings</button>
   </nav>
 </div>
 
 <script>
-// ── CONFIG (loaded from localStorage, overrideable in settings) ──
-let RATE = parseFloat(localStorage.getItem('wtt_rate') || '17.18');
-let OT_RATE = parseFloat(localStorage.getItem('wtt_ot_rate') || '20');
-let OT_THRESHOLD = parseFloat(localStorage.getItem('wtt_ot_threshold') || '43');
+// ── CONFIG ──
+let MONTHLY_SALARY    = parseFloat(localStorage.getItem('wtt_monthly_salary')    || '2750');
+let OT_THRESHOLD      = parseFloat(localStorage.getItem('wtt_ot_threshold')      || '45');
+let OT_RATE           = parseFloat(localStorage.getItem('wtt_ot_rate')           || '20');
 
 let state = { clockedIn: false, clockInTime: null, weekOffset: 0, viewDay: null, manualFrom: null, activeTab: 'home' };
 let db = loadDb();
@@ -433,7 +432,7 @@ function dayKey(d) { return new Date(d).toISOString().slice(0,10); }
 function getDay(key) { if (!db[key]) db[key] = { entries: [], notes: [] }; return db[key]; }
 
 function getMondayOf(d) {
-  const dt = new Date(d); const day = dt.getDay();
+  const dt = new Date(d), day = dt.getDay();
   dt.setDate(dt.getDate() + (day === 0 ? -6 : 1 - day)); dt.setHours(0,0,0,0); return dt;
 }
 function weekDays(offset) {
@@ -441,15 +440,59 @@ function weekDays(offset) {
   return Array.from({length:7}, (_,i) => { const d = new Date(mon); d.setDate(d.getDate()+i); return d; });
 }
 function totalHoursForWeek(days) {
-  return days.reduce((acc,d) => acc + (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000,0), 0);
+  return days.reduce((acc,d) => acc + (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0), 0);
 }
-function calcEarnings(h) {
-  const reg = Math.min(h, OT_THRESHOLD), ot = Math.max(0, h - OT_THRESHOLD);
-  return { reg, ot, earn: reg * RATE + ot * OT_RATE };
+
+// Core pay logic:
+// - Base salary is always $MONTHLY_SALARY for the month
+// - Each week hour beyond OT_THRESHOLD earns OT_RATE extra
+function weekOTHours(h) { return Math.max(0, h - OT_THRESHOLD); }
+function weekOTEarnings(h) { return weekOTHours(h) * OT_RATE; }
+
+// Returns all weeks that overlap the given month
+function weeksForMonth(year, month) {
+  const firstDay = new Date(year, month, 1);
+  const lastDay  = new Date(year, month+1, 0);
+  const weeks = [];
+  let cursor = getMondayOf(firstDay);
+  while (cursor <= lastDay) {
+    weeks.push(Array.from({length:7}, (_,i) => { const d = new Date(cursor); d.setDate(d.getDate()+i); return d; }));
+    cursor = new Date(cursor); cursor.setDate(cursor.getDate()+7);
+  }
+  return weeks;
 }
+
+function calcMonthStats(year, month) {
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  let totalH = 0, daysWorked = 0, totalOTH = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const k = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const h = (db[k]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0);
+    if (h > 0) { totalH += h; daysWorked++; }
+  }
+  const weeks = weeksForMonth(year, month);
+  const weeksData = [];
+  weeks.forEach(wdays => {
+    // hours only within this month for display
+    let monthH = 0;
+    wdays.forEach(d => {
+      if (d.getMonth() === month && d.getFullYear() === year)
+        monthH += (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0);
+    });
+    const wH  = totalHoursForWeek(wdays); // full week for OT calc
+    const otH = weekOTHours(wH);
+    totalOTH += otH;
+    if (monthH > 0 || otH > 0)
+      weeksData.push({ label: fmtShortDate(wdays[0]) + ' – ' + fmtShortDate(wdays[6]), h: monthH, otH, otEarn: otH * OT_RATE });
+  });
+  const otEarn   = totalOTH * OT_RATE;
+  const totalPay = MONTHLY_SALARY + otEarn;
+  return { totalH, daysWorked, daysInMonth, totalOTH, otEarn, totalPay, weeksData };
+}
+
 function fmtHM(h) { const hh = Math.floor(h), mm = Math.round((h-hh)*60); return hh+'h '+(mm<10?'0':'')+mm+'m'; }
 function fmtTime(ts) { return new Date(ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
-function fmtDate(d) { return new Date(d).toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'}); }
+function fmtDate(d)  { return new Date(d).toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'}); }
 function fmtShortDate(d) { return new Date(d).toLocaleDateString([],{month:'short',day:'numeric'}); }
 
 // ── CLOCK ──
@@ -458,7 +501,7 @@ function startClock() {
   function tick() {
     const now = new Date();
     document.getElementById('live-clock').textContent = now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-    document.getElementById('live-date').textContent = fmtDate(now);
+    document.getElementById('live-date').textContent  = fmtDate(now);
     if (state.clockedIn) {
       const el = (now - state.clockInTime) / 3600000;
       document.getElementById('clock-status').textContent = 'Clocked in · ' + fmtHM(el) + ' elapsed';
@@ -474,7 +517,7 @@ function punch() {
     state.clockedIn = true; state.clockInTime = now;
     localStorage.setItem('wtt_active', JSON.stringify({start:now}));
     document.getElementById('main-btn').textContent = 'Clock Out';
-    document.getElementById('main-btn').className = 'punch-btn out';
+    document.getElementById('main-btn').className   = 'punch-btn out';
     const s = document.getElementById('clock-status'); s.className = 'status active'; s.textContent = 'Clocked in · 0h 00m elapsed';
   } else {
     const key = dayKey(new Date(state.clockInTime));
@@ -482,47 +525,63 @@ function punch() {
     saveDb(); localStorage.removeItem('wtt_active');
     state.clockedIn = false; state.clockInTime = null;
     document.getElementById('main-btn').textContent = 'Clock In';
-    document.getElementById('main-btn').className = 'punch-btn in';
+    document.getElementById('main-btn').className   = 'punch-btn in';
     const s = document.getElementById('clock-status'); s.className = 'status'; s.textContent = 'Not clocked in';
     renderWeek();
   }
 }
 
-// ── RENDER WEEK (home) ──
+// ── RENDER WEEK ──
 function renderWeek() {
-  const days = weekDays(state.weekOffset);
+  const days   = weekDays(state.weekOffset);
   const todayK = dayKey(new Date());
-  const isNow = state.weekOffset === 0;
+  const isNow  = state.weekOffset === 0;
   document.getElementById('week-label').textContent = isNow ? 'This week' : fmtShortDate(days[0]) + ' – ' + fmtShortDate(days[6]);
+
   let totalH = totalHoursForWeek(days);
   if (state.clockedIn && isNow) totalH += (Date.now() - state.clockInTime) / 3600000;
-  const { ot, earn } = calcEarnings(totalH);
-  document.getElementById('stat-week').textContent = fmtHM(totalH);
-  document.getElementById('stat-earn').textContent = '$' + earn.toFixed(2);
-  if (ot > 0) {
+
+  const otH    = weekOTHours(totalH);
+  const otEarn = otH * OT_RATE;
+  const regH   = Math.min(totalH, OT_THRESHOLD);
+  const remH   = Math.max(0, OT_THRESHOLD - totalH);
+
+  document.getElementById('stat-week').textContent   = fmtHM(totalH);
+  document.getElementById('stat-earn').textContent   = otH > 0 ? '+$' + otEarn.toFixed(2) : '$0.00';
+  document.getElementById('stat-ot-label').textContent = otH > 0 ? fmtHM(otH) + ' overtime' : 'no overtime yet';
+  document.getElementById('stat-sub').textContent    = otH > 0 ? fmtHM(regH) + ' regular' : (remH > 0 ? remH.toFixed(1) + 'h to overtime' : '');
+
+  if (otH > 0) {
     document.getElementById('ot-banner').style.display = 'block';
-    document.getElementById('ot-earn').textContent = '$' + (ot * OT_RATE).toFixed(2);
-    document.getElementById('ot-detail').textContent = fmtHM(ot) + ' overtime @ $' + OT_RATE.toFixed(2) + '/hr';
-    document.getElementById('stat-ot-label').textContent = fmtHM(ot) + ' overtime';
-    document.getElementById('stat-sub').textContent = fmtHM(Math.min(totalH, OT_THRESHOLD)) + ' regular';
+    document.getElementById('ot-earn').textContent  = '+$' + otEarn.toFixed(2);
+    document.getElementById('ot-detail').textContent = fmtHM(otH) + ' overtime @ $' + OT_RATE.toFixed(2) + '/hr';
   } else {
     document.getElementById('ot-banner').style.display = 'none';
-    document.getElementById('stat-ot-label').textContent = 'no overtime yet';
-    const rem = OT_THRESHOLD - totalH;
-    document.getElementById('stat-sub').textContent = rem > 0 ? rem.toFixed(1) + 'h to overtime' : '';
   }
-  const regH = Math.min(totalH, OT_THRESHOLD), remH = Math.max(0, OT_THRESHOLD - totalH);
+
+  // Progress bar
   const pct = Math.min(100, (totalH / OT_THRESHOLD) * 100);
   document.getElementById('week-prog-label').textContent = fmtHM(totalH) + ' / ' + OT_THRESHOLD + 'h';
-  document.getElementById('week-prog-bar').style.width = pct + '%';
-  document.getElementById('week-prog-bar').style.background = ot > 0 ? 'var(--green-dark)' : 'var(--green)';
-  document.getElementById('week-reg-h').textContent = fmtHM(regH);
-  document.getElementById('week-ot-h').textContent = ot > 0 ? fmtHM(ot) : '—';
-  document.getElementById('week-ot-h').style.color = ot > 0 ? 'var(--green-dark)' : 'var(--text3)';
-  document.getElementById('week-rem-h').textContent = remH > 0 ? fmtHM(remH) : '✓ Done';
-  document.getElementById('week-rem-h').style.color = remH > 0 ? 'var(--amber)' : 'var(--green)';
-  const hours = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000,0));
-  const maxH = Math.max(...hours, 0.001);
+  document.getElementById('week-prog-bar').style.width   = pct + '%';
+  document.getElementById('week-prog-bar').style.background = otH > 0 ? 'var(--green-dark)' : 'var(--green)';
+  document.getElementById('week-reg-h').textContent  = fmtHM(regH);
+  document.getElementById('week-ot-h').textContent   = otH > 0 ? fmtHM(otH) : '—';
+  document.getElementById('week-ot-h').style.color   = otH > 0 ? 'var(--green-dark)' : 'var(--text3)';
+  document.getElementById('week-rem-h').textContent  = remH > 0 ? fmtHM(remH) : '✓ Done';
+  document.getElementById('week-rem-h').style.color  = remH > 0 ? 'var(--amber)' : 'var(--green)';
+
+  // Monthly banner — scan current month's weeks
+  const now2 = new Date();
+  const { totalOTH, otEarn: monthOTEarn, totalPay } = calcMonthStats(now2.getFullYear(), now2.getMonth());
+  document.getElementById('monthly-total').textContent   = '$' + totalPay.toFixed(2);
+  document.getElementById('monthly-ot-hours').textContent = totalOTH > 0 ? fmtHM(totalOTH) : '0h';
+  document.getElementById('monthly-detail').textContent  = totalOTH > 0
+    ? 'Base $' + MONTHLY_SALARY.toFixed(0) + ' + $' + monthOTEarn.toFixed(2) + ' OT bonus'
+    : 'Base $' + MONTHLY_SALARY.toFixed(0) + ' · No overtime yet this month';
+
+  // Day list
+  const hours = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0));
+  const maxH  = Math.max(...hours, 0.001);
   const DNAMES = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const list = document.getElementById('day-list'); list.innerHTML = '';
   days.forEach((d,i) => {
@@ -540,34 +599,34 @@ function switchTab(tab) {
   state.activeTab = tab;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-  if (tab === 'home') { document.getElementById('home-screen').classList.add('active'); document.getElementById('tab-home').classList.add('active'); renderWeek(); }
-  else if (tab === 'stats') { document.getElementById('stats-screen').classList.add('active'); document.getElementById('tab-stats').classList.add('active'); renderStats(); }
-  else if (tab === 'settings') { document.getElementById('settings-screen').classList.add('active'); document.getElementById('tab-settings').classList.add('active'); loadSettingsUI(); }
+  if (tab === 'home')      { document.getElementById('home-screen').classList.add('active');      document.getElementById('tab-home').classList.add('active');      renderWeek(); }
+  else if (tab === 'stats')     { document.getElementById('stats-screen').classList.add('active');     document.getElementById('tab-stats').classList.add('active');     renderStats(); }
+  else if (tab === 'settings')  { document.getElementById('settings-screen').classList.add('active');  document.getElementById('tab-settings').classList.add('active');  loadSettingsUI(); }
   else if (tab === 'quickfill') { document.getElementById('quickfill-screen').classList.add('active'); document.getElementById('tab-quickfill').classList.add('active'); renderQuickFill(); }
 }
 function showHome() { switchTab('home'); }
 
+// ── DAY SCREEN ──
 function showDay(d) {
   state.viewDay = d;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('day-screen').classList.add('active');
   document.getElementById('day-title').textContent = fmtDate(d);
   const k = dayKey(d);
-  const entries = (db[k]?.entries||[]).slice().sort((a,b)=>a.start-b.start);
-  const notes = db[k]?.notes||[];
-  const totalH = entries.reduce((s,e)=>s+(e.end-e.start)/3600000,0);
-  document.getElementById('day-subtitle').textContent = totalH>0?fmtHM(totalH)+' worked this day':'No time logged yet';
+  const entries = (db[k]?.entries||[]).slice().sort((a,b) => a.start-b.start);
+  const notes   = db[k]?.notes||[];
+  const totalH  = entries.reduce((s,e) => s+(e.end-e.start)/3600000, 0);
+  document.getElementById('day-subtitle').textContent = totalH > 0 ? fmtHM(totalH) + ' worked this day' : 'No time logged yet';
   const entDiv = document.getElementById('day-entries'); entDiv.innerHTML = '';
   document.getElementById('entries-label').style.display = entries.length > 0 ? 'block' : 'none';
   entries.forEach((e,i) => {
-    const dur = (e.end-e.start)/3600000;
-    const note = notes.find(n=>n.entryIndex===i);
+    const dur  = (e.end-e.start)/3600000;
+    const note = notes.find(n => n.entryIndex === i);
     const card = document.createElement('div'); card.className = 'entry-card';
     card.innerHTML = `<div class="ei"><div class="et">${fmtTime(e.start)} – ${fmtTime(e.end)}${e.manual?'<span class="manual-badge">manual</span>':''}</div><div class="ed">${fmtHM(dur)}</div>${note?`<div class="en">${note.text}</div>`:''}</div><div class="entry-actions"><button class="dup-btn" onclick="duplicateEntry('${k}',${i})">⧉ Copy</button><button class="del-btn" onclick="deleteEntry('${k}',${i})">×</button></div>`;
     entDiv.appendChild(card);
   });
-  const standaloneNotes = notes.filter(n=>n.entryIndex===undefined);
-  standaloneNotes.forEach((n,ni) => {
+  notes.filter(n => n.entryIndex === undefined).forEach((n,ni) => {
     const card = document.createElement('div'); card.className = 'entry-card';
     card.innerHTML = `<div class="ei"><div class="et">Note</div><div class="en">${n.text}</div></div><button class="del-btn" onclick="deleteStandaloneNote('${k}',${ni})">×</button>`;
     entDiv.appendChild(card);
@@ -582,16 +641,14 @@ function deleteEntry(key, index) {
   saveDb(); showDay(state.viewDay);
 }
 function deleteStandaloneNote(key, index) {
-  const standalone=(db[key]?.notes||[]).filter(n=>n.entryIndex===undefined);
-  const target=standalone[index]; db[key].notes=db[key].notes.filter(n=>n!==target);
+  const standalone = (db[key]?.notes||[]).filter(n=>n.entryIndex===undefined);
+  const target = standalone[index]; db[key].notes = db[key].notes.filter(n=>n!==target);
   saveDb(); showDay(state.viewDay);
 }
 function duplicateEntry(key, index) {
-  const e = db[key].entries[index];
-  const dur = e.end - e.start;
-  const newStart = e.end, newEnd = e.end + dur;
-  getDay(key).entries.push({start:newStart, end:newEnd, manual:true});
-  db[key].entries.sort((a,b)=>a.start-b.start);
+  const e = db[key].entries[index], dur = e.end - e.start;
+  getDay(key).entries.push({start: e.end, end: e.end + dur, manual: true});
+  db[key].entries.sort((a,b) => a.start-b.start);
   saveDb(); showDay(state.viewDay);
 }
 function saveNote() {
@@ -616,16 +673,20 @@ function showManual(d) {
 }
 function cancelManual() { if (state.manualFrom) showDay(state.manualFrom); else showHome(); }
 function saveManual() {
-  const dateVal=document.getElementById('m-date').value, startVal=document.getElementById('m-start').value, endVal=document.getElementById('m-end').value, noteVal=document.getElementById('m-note').value.trim();
-  const errEl=document.getElementById('m-error');
+  const dateVal = document.getElementById('m-date').value;
+  const startVal = document.getElementById('m-start').value;
+  const endVal   = document.getElementById('m-end').value;
+  const noteVal  = document.getElementById('m-note').value.trim();
+  const errEl    = document.getElementById('m-error');
   if (!dateVal||!startVal||!endVal) { errEl.textContent='Please fill in the date, start time, and end time.'; errEl.style.display='block'; return; }
-  const startTs=new Date(dateVal+'T'+startVal).getTime(), endTs=new Date(dateVal+'T'+endVal).getTime();
-  if (endTs<=startTs) { errEl.textContent='End time must be after start time.'; errEl.style.display='block'; return; }
-  if ((endTs-startTs)>16*3600000) { errEl.textContent='A single entry cannot exceed 16 hours.'; errEl.style.display='block'; return; }
-  errEl.style.display='none';
-  const day=getDay(dateVal), entryIndex=day.entries.length;
-  day.entries.push({start:startTs,end:endTs,manual:true}); day.entries.sort((a,b)=>a.start-b.start);
-  if (noteVal) day.notes.push({text:noteVal,entryIndex,ts:Date.now()});
+  const startTs = new Date(dateVal+'T'+startVal).getTime();
+  const endTs   = new Date(dateVal+'T'+endVal).getTime();
+  if (endTs <= startTs)          { errEl.textContent='End time must be after start time.'; errEl.style.display='block'; return; }
+  if ((endTs-startTs)>16*3600000){ errEl.textContent='A single entry cannot exceed 16 hours.'; errEl.style.display='block'; return; }
+  errEl.style.display = 'none';
+  const day = getDay(dateVal), entryIndex = day.entries.length;
+  day.entries.push({start:startTs, end:endTs, manual:true}); day.entries.sort((a,b)=>a.start-b.start);
+  if (noteVal) day.notes.push({text:noteVal, entryIndex, ts:Date.now()});
   saveDb(); showDay(new Date(dateVal+'T12:00:00'));
 }
 
@@ -633,31 +694,34 @@ function saveManual() {
 function showYear() {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('year-screen').classList.add('active');
-  const weeks=[];
-  for (let w=-51;w<=0;w++) {
-    const days=weekDays(w), h=totalHoursForWeek(days);
-    if (h>0) { const {earn,ot}=calcEarnings(h); weeks.push({label:fmtShortDate(days[0])+' – '+fmtShortDate(days[6]),h,earn,ot,isCurrent:w===0}); }
+  const weeks = [];
+  for (let w=-51; w<=0; w++) {
+    const days = weekDays(w), h = totalHoursForWeek(days);
+    if (h > 0) {
+      const otH = weekOTHours(h), otEarn = otH * OT_RATE;
+      weeks.push({ label: fmtShortDate(days[0]) + ' – ' + fmtShortDate(days[6]), h, otH, otEarn, isCurrent: w===0 });
+    }
   }
-  const wrap=document.getElementById('year-content');
+  const wrap = document.getElementById('year-content');
   if (!weeks.length) { wrap.innerHTML='<div class="empty-state">No data yet.<br>Start logging time to see your year here.</div>'; return; }
-  let html=`<table class="year-table"><thead><tr><th>Week</th><th>Hours</th><th>Earnings</th></tr></thead><tbody>`;
-  weeks.slice().reverse().forEach(w=>{
-    html+=`<tr class="${w.isCurrent?'cur-week':''}"><td>${w.label}${w.isCurrent?' <span style="font-size:10px;color:var(--green)">current</span>':''}</td><td>${fmtHM(w.h)}</td><td class="earn">$${w.earn.toFixed(2)}</td></tr>`;
+  let html = `<table class="year-table"><thead><tr><th>Week</th><th>Hours</th><th>OT Bonus</th></tr></thead><tbody>`;
+  weeks.slice().reverse().forEach(w => {
+    html += `<tr class="${w.isCurrent?'cur-week':''}"><td>${w.label}${w.isCurrent?' <span style="font-size:10px;color:var(--green)">current</span>':''}</td><td>${fmtHM(w.h)}</td><td class="earn">${w.otH>0?'+$'+w.otEarn.toFixed(2):'—'}</td></tr>`;
   });
-  html+='</tbody></table>'; wrap.innerHTML=html;
+  html += '</tbody></table>'; wrap.innerHTML = html;
 }
 
 // ── STATS SCREEN ──
 function renderStats() {
   const now = new Date();
-  // Build list of last 12 months
   const months = [];
-  for (let i=11;i>=0;i--) { const d=new Date(now.getFullYear(),now.getMonth()-i,1); months.push({year:d.getFullYear(),month:d.getMonth()}); }
-  const scroller = document.getElementById('month-scroller'); scroller.innerHTML='';
+  for (let i=11; i>=0; i--) { const d=new Date(now.getFullYear(),now.getMonth()-i,1); months.push({year:d.getFullYear(),month:d.getMonth()}); }
+  const scroller = document.getElementById('month-scroller'); scroller.innerHTML = '';
   months.forEach((m,idx) => {
-    const label=new Date(m.year,m.month,1).toLocaleDateString([],{month:'short',year:'numeric'});
-    const chip=document.createElement('button'); chip.className='month-chip'+(idx===months.length-1?' active':'');
-    chip.textContent=label; chip.onclick=()=>{ document.querySelectorAll('.month-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); renderMonthStats(m.year,m.month); };
+    const label = new Date(m.year,m.month,1).toLocaleDateString([],{month:'short',year:'numeric'});
+    const chip  = document.createElement('button'); chip.className = 'month-chip' + (idx===months.length-1?' active':'');
+    chip.textContent = label;
+    chip.onclick = () => { document.querySelectorAll('.month-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); renderMonthStats(m.year,m.month); };
     scroller.appendChild(chip);
   });
   renderMonthStats(now.getFullYear(), now.getMonth());
@@ -665,152 +729,113 @@ function renderStats() {
 }
 
 function renderMonthStats(year, month) {
-  const daysInMonth = new Date(year, month+1, 0).getDate();
-  let totalH=0, totalEarn=0, totalOT=0, daysWorked=0;
-  const weekMap={};
-  for (let d=1;d<=daysInMonth;d++) {
-    const k=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const dayH=(db[k]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
-    if (dayH>0) { totalH+=dayH; daysWorked++; }
-  }
-  // Calculate earnings week by week within the month
-  const firstDay=new Date(year,month,1), lastDay=new Date(year,month,daysInMonth);
-  let cursor=getMondayOf(firstDay);
-  const weeksData=[];
-  while (cursor<=lastDay) {
-    const wdays=Array.from({length:7},(_,i)=>{const d=new Date(cursor);d.setDate(d.getDate()+i);return d;});
-    const wH=totalHoursForWeek(wdays);
-    // Only count hours that fall within the month
-    let monthH=0;
-    wdays.forEach(d=>{
-      if (d.getMonth()===month&&d.getFullYear()===year) monthH+=(db[dayKey(d)]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
-    });
-    if (monthH>0) {
-      const {earn,ot}=calcEarnings(wH);
-      // Prorate earnings for days in this month
-      const monthFrac = wH>0 ? monthH/wH : 0;
-      const prorated = earn * monthFrac;
-      const otProrated = ot * monthFrac;
-      totalEarn+=prorated; totalOT+=otProrated;
-      weeksData.push({label:fmtShortDate(wdays[0])+' – '+fmtShortDate(wdays[6]), h:monthH, earn:prorated, ot:otProrated});
-    }
-    cursor=new Date(cursor); cursor.setDate(cursor.getDate()+7);
-  }
-  document.getElementById('s-earn').textContent='$'+totalEarn.toFixed(2);
-  document.getElementById('s-earn-sub').textContent='Regular: $'+(totalEarn-(totalOT*OT_RATE)).toFixed(2)+'  ·  OT: $'+(totalOT*OT_RATE).toFixed(2);
-  document.getElementById('s-hours').textContent=fmtHM(totalH);
-  document.getElementById('s-hours-sub').textContent=daysWorked+' days worked';
-  document.getElementById('s-ot').textContent=totalOT>0?fmtHM(totalOT):'None';
-  document.getElementById('s-ot-sub').textContent=totalOT>0?'$'+(totalOT*OT_RATE).toFixed(2)+' earned':'Keep going!';
-  document.getElementById('s-days').textContent=daysWorked;
-  document.getElementById('s-days-sub').textContent=daysWorked>0?'of '+daysInMonth+' days':'';
-  document.getElementById('s-avg').textContent=daysWorked>0?fmtHM(totalH/daysWorked):'—';
-  const wkList=document.getElementById('s-week-list'); wkList.innerHTML='';
+  const { totalH, daysWorked, daysInMonth, totalOTH, otEarn, totalPay, weeksData } = calcMonthStats(year, month);
+
+  document.getElementById('s-earn').textContent    = '$' + totalPay.toFixed(2);
+  document.getElementById('s-earn-sub').textContent = totalOTH > 0
+    ? 'Base $' + MONTHLY_SALARY.toFixed(0) + ' + $' + otEarn.toFixed(2) + ' OT bonus'
+    : 'Base $' + MONTHLY_SALARY.toFixed(0) + ' · No overtime this month';
+
+  document.getElementById('s-hours').textContent    = fmtHM(totalH);
+  document.getElementById('s-hours-sub').textContent = daysWorked + ' days worked';
+  document.getElementById('s-ot').textContent       = totalOTH > 0 ? fmtHM(totalOTH) : '—';
+  document.getElementById('s-ot-sub').textContent   = totalOTH > 0 ? fmtHM(totalOTH) + ' over ' + OT_THRESHOLD + 'h/wk limit' : 'Under ' + OT_THRESHOLD + 'h every week';
+  document.getElementById('s-days').textContent     = daysWorked;
+  document.getElementById('s-days-sub').textContent = 'of ' + daysInMonth + ' days';
+  document.getElementById('s-ot-earn').textContent  = otEarn > 0 ? '+$' + otEarn.toFixed(2) : '$0.00';
+
+  const wkList = document.getElementById('s-week-list'); wkList.innerHTML = '';
   if (!weeksData.length) { wkList.innerHTML='<div class="empty-state" style="padding:20px">No data this month</div>'; return; }
-  weeksData.forEach(w=>{
-    const row=document.createElement('div'); row.className='stats-wk-row';
-    row.innerHTML=`<div class="swr-label">${w.label}</div><div class="swr-right"><div class="swr-h">${fmtHM(w.h)}</div><div class="swr-earn">$${w.earn.toFixed(2)}</div></div>`;
+  weeksData.forEach(w => {
+    const row = document.createElement('div'); row.className = 'stats-wk-row' + (w.otH > 0 ? ' has-ot' : '');
+    row.innerHTML = `<div class="swr-label">${w.label}</div><div class="swr-right"><div class="swr-h">${fmtHM(w.h)}</div><div class="swr-earn">${w.otH>0?'+$'+w.otEarn.toFixed(2)+' OT':'No OT'}</div></div>`;
     wkList.appendChild(row);
   });
 }
 
 // ── SETTINGS ──
 function loadSettingsUI() {
-  document.getElementById('setting-rate').value = RATE;
-  document.getElementById('setting-ot-rate').value = OT_RATE;
-  document.getElementById('setting-ot-threshold').value = OT_THRESHOLD;
+  document.getElementById('setting-monthly-salary').value = MONTHLY_SALARY;
+  document.getElementById('setting-ot-threshold').value   = OT_THRESHOLD;
+  document.getElementById('setting-ot-rate').value        = OT_RATE;
 }
 function saveSettings() {
-  const r=parseFloat(document.getElementById('setting-rate').value);
-  const otr=parseFloat(document.getElementById('setting-ot-rate').value);
-  const ott=parseFloat(document.getElementById('setting-ot-threshold').value);
-  if (isNaN(r)||r<=0||isNaN(otr)||otr<=0||isNaN(ott)||ott<=0) return;
-  RATE=r; OT_RATE=otr; OT_THRESHOLD=ott;
-  localStorage.setItem('wtt_rate',RATE); localStorage.setItem('wtt_ot_rate',OT_RATE); localStorage.setItem('wtt_ot_threshold',OT_THRESHOLD);
-  const msg=document.getElementById('save-msg'); msg.style.opacity='1'; setTimeout(()=>msg.style.opacity='0',2000);
+  const ms  = parseFloat(document.getElementById('setting-monthly-salary').value);
+  const ott = parseFloat(document.getElementById('setting-ot-threshold').value);
+  const otr = parseFloat(document.getElementById('setting-ot-rate').value);
+  if (isNaN(ms)||ms<0||isNaN(ott)||ott<=0||isNaN(otr)||otr<0) return;
+  MONTHLY_SALARY = ms; OT_THRESHOLD = ott; OT_RATE = otr;
+  localStorage.setItem('wtt_monthly_salary', MONTHLY_SALARY);
+  localStorage.setItem('wtt_ot_threshold',   OT_THRESHOLD);
+  localStorage.setItem('wtt_ot_rate',        OT_RATE);
+  const msg = document.getElementById('save-msg'); msg.style.opacity='1'; setTimeout(()=>msg.style.opacity='0',2000);
   renderWeek();
 }
 
 // ── QUICK FILL ──
 function renderQuickFill() {
-  qfSelectedDays.clear(); qfCopyWeek=null;
-  const days=weekDays(0);
-  const grid=document.getElementById('qf-day-grid'); grid.innerHTML='';
-  const DNAMES=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  days.forEach((d,i)=>{
-    const k=dayKey(d), h=(db[k]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
-    const btn=document.createElement('button'); btn.className='qf-day-btn'+(h>0?' has-data':'');
-    btn.innerHTML=`<span class="qfd-name">${DNAMES[i]}</span><span class="qfd-h">${h>0?Math.round(h)+'h':'—'}</span>`;
-    btn.onclick=()=>{ if (qfSelectedDays.has(k)) { qfSelectedDays.delete(k); btn.classList.remove('selected'); } else { qfSelectedDays.add(k); btn.classList.add('selected'); } };
+  qfSelectedDays.clear(); qfCopyWeek = null;
+  const days = weekDays(0);
+  const grid = document.getElementById('qf-day-grid'); grid.innerHTML = '';
+  const DNAMES = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  days.forEach((d,i) => {
+    const k = dayKey(d), h = (db[k]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
+    const btn = document.createElement('button'); btn.className = 'qf-day-btn'+(h>0?' has-data':'');
+    btn.innerHTML = `<span class="qfd-name">${DNAMES[i]}</span><span class="qfd-h">${h>0?Math.round(h)+'h':'—'}</span>`;
+    btn.onclick = () => { if (qfSelectedDays.has(k)) { qfSelectedDays.delete(k); btn.classList.remove('selected'); } else { qfSelectedDays.add(k); btn.classList.add('selected'); } };
     grid.appendChild(btn);
   });
-  // Populate copy-week list with past weeks that have data
-  const cwList=document.getElementById('copy-week-list'); cwList.innerHTML='';
-  for (let w=-1;w>=-12;w--) {
-    const wdays=weekDays(w), wH=totalHoursForWeek(wdays);
-    if (wH>0) {
-      const row=document.createElement('div'); row.className='copy-week-row';
-      row.innerHTML=`<span class="cwr-label">${fmtShortDate(wdays[0])} – ${fmtShortDate(wdays[6])}</span><span class="cwr-detail">${fmtHM(wH)}</span>`;
-      row.onclick=()=>{ document.querySelectorAll('.copy-week-row').forEach(r=>r.classList.remove('selected')); row.classList.add('selected'); qfCopyWeek=w; };
+  const cwList = document.getElementById('copy-week-list'); cwList.innerHTML = '';
+  for (let w=-1; w>=-12; w--) {
+    const wdays = weekDays(w), wH = totalHoursForWeek(wdays);
+    if (wH > 0) {
+      const row = document.createElement('div'); row.className = 'copy-week-row';
+      row.innerHTML = `<span class="cwr-label">${fmtShortDate(wdays[0])} – ${fmtShortDate(wdays[6])}</span><span class="cwr-detail">${fmtHM(wH)}</span>`;
+      row.onclick = () => { document.querySelectorAll('.copy-week-row').forEach(r=>r.classList.remove('selected')); row.classList.add('selected'); qfCopyWeek = w; };
       cwList.appendChild(row);
     }
   }
-  if (!cwList.children.length) cwList.innerHTML='<div style="font-size:13px;color:var(--text3);padding:10px 0">No past weeks with data yet.</div>';
-  document.getElementById('qf-start').value=''; document.getElementById('qf-end').value='';
+  if (!cwList.children.length) cwList.innerHTML = '<div style="font-size:13px;color:var(--text3);padding:10px 0">No past weeks with data yet.</div>';
+  document.getElementById('qf-start').value = ''; document.getElementById('qf-end').value = '';
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
 }
-
 function selectTemplate(el, start, end) {
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected')); el.classList.add('selected');
-  document.getElementById('qf-start').value=start; document.getElementById('qf-end').value=end; qfCopyWeek=null;
+  document.getElementById('qf-start').value = start; document.getElementById('qf-end').value = end; qfCopyWeek = null;
   document.querySelectorAll('.copy-week-row').forEach(r=>r.classList.remove('selected'));
 }
-
 function applyQuickFill() {
-  if (qfCopyWeek!==null) {
-    // Copy all entries from source week into current week
-    const srcDays=weekDays(qfCopyWeek), tgtDays=weekDays(0);
-    let count=0;
-    srcDays.forEach((sd,i)=>{
-      const sk=dayKey(sd), tk=dayKey(tgtDays[i]);
-      const srcEntries=(db[sk]?.entries||[]);
-      if (srcEntries.length>0) {
-        srcEntries.forEach(e=>{
-          const dur=e.end-e.start;
-          const srcDate=new Date(e.start), tgtDate=new Date(tgtDays[i]);
-          tgtDate.setHours(srcDate.getHours(),srcDate.getMinutes(),0,0);
-          const newStart=tgtDate.getTime(), newEnd=newStart+dur;
-          getDay(tk).entries.push({start:newStart,end:newEnd,manual:true});
-          count++;
-        });
-        getDay(tk).entries.sort((a,b)=>a.start-b.start);
-      }
+  if (qfCopyWeek !== null) {
+    const srcDays = weekDays(qfCopyWeek), tgtDays = weekDays(0); let count = 0;
+    srcDays.forEach((sd,i) => {
+      const sk = dayKey(sd), tk = dayKey(tgtDays[i]);
+      (db[sk]?.entries||[]).forEach(e => {
+        const dur = e.end-e.start, srcDate = new Date(e.start), tgtDate = new Date(tgtDays[i]);
+        tgtDate.setHours(srcDate.getHours(),srcDate.getMinutes(),0,0);
+        getDay(tk).entries.push({start:tgtDate.getTime(), end:tgtDate.getTime()+dur, manual:true}); count++;
+      });
+      if ((db[sk]?.entries||[]).length) getDay(tk).entries.sort((a,b)=>a.start-b.start);
     });
-    saveDb();
-    alert(`Copied ${count} entries from that week into this week ✓`);
-    switchTab('home'); return;
+    saveDb(); alert(`Copied ${count} entries from that week into this week ✓`); switchTab('home'); return;
   }
-  const startVal=document.getElementById('qf-start').value, endVal=document.getElementById('qf-end').value;
+  const startVal = document.getElementById('qf-start').value, endVal = document.getElementById('qf-end').value;
   if (!startVal||!endVal) { alert('Please choose a template or set custom start/end times.'); return; }
-  if (qfSelectedDays.size===0) { alert('Please select at least one day.'); return; }
-  qfSelectedDays.forEach(k=>{
-    const startTs=new Date(k+'T'+startVal).getTime(), endTs=new Date(k+'T'+endVal).getTime();
-    if (endTs>startTs) { getDay(k).entries.push({start:startTs,end:endTs,manual:true}); getDay(k).entries.sort((a,b)=>a.start-b.start); }
+  if (qfSelectedDays.size === 0) { alert('Please select at least one day.'); return; }
+  qfSelectedDays.forEach(k => {
+    const startTs = new Date(k+'T'+startVal).getTime(), endTs = new Date(k+'T'+endVal).getTime();
+    if (endTs > startTs) { getDay(k).entries.push({start:startTs, end:endTs, manual:true}); getDay(k).entries.sort((a,b)=>a.start-b.start); }
   });
-  saveDb();
-  alert(`Applied to ${qfSelectedDays.size} day(s) ✓`);
-  switchTab('home');
+  saveDb(); alert(`Applied to ${qfSelectedDays.size} day(s) ✓`); switchTab('home');
 }
 
 // ── RESTORE ACTIVE SESSION ──
 const active = JSON.parse(localStorage.getItem('wtt_active')||'null');
 if (active) {
-  state.clockedIn=true; state.clockInTime=active.start;
-  document.getElementById('main-btn').textContent='Clock Out'; document.getElementById('main-btn').className='punch-btn out';
-  const s=document.getElementById('clock-status'); s.className='status active';
+  state.clockedIn = true; state.clockInTime = active.start;
+  document.getElementById('main-btn').textContent = 'Clock Out'; document.getElementById('main-btn').className = 'punch-btn out';
+  document.getElementById('clock-status').className = 'status active';
 }
 startClock(); renderWeek();
 </script>
 </body>
 </html>
-
