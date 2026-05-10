@@ -70,13 +70,11 @@
   .ot-banner .ots { font-size: 12px; color: var(--green-text); margin-top: 2px; }
 
   .monthly-banner { background: var(--blue-light); border: 1px solid rgba(24,95,165,0.2); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-  .monthly-banner .mbl { }
   .monthly-banner .mb-label { font-size: 11px; color: var(--blue); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; margin-bottom: 4px; }
   .monthly-banner .mb-val { font-size: 26px; font-weight: 600; color: var(--blue); font-family: 'DM Mono', monospace; }
   .monthly-banner .mb-sub { font-size: 12px; color: var(--blue); opacity: 0.7; margin-top: 3px; }
-  .monthly-banner .mb-ot { text-align: right; }
   .monthly-banner .mb-ot-label { font-size: 10px; color: var(--blue); opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-  .monthly-banner .mb-ot-val { font-size: 16px; font-weight: 600; color: var(--blue); font-family: 'DM Mono', monospace; }
+  .monthly-banner .mb-ot-val { font-size: 16px; font-weight: 600; color: var(--blue); font-family: 'DM Mono', monospace; text-align: right; }
 
   .week-nav { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 10px; }
   .week-nav span { font-size: 13px; font-weight: 500; color: var(--text2); }
@@ -131,10 +129,17 @@
   .year-table tr.cur-week td { background: var(--green-light); }
   .empty-state { text-align: center; padding: 40px 20px; color: var(--text3); font-size: 14px; line-height: 1.6; }
 
+  /* STATS */
+  .stats-tab-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+  .stats-tab { flex: 1; padding: 10px 0; background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .stats-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
   .month-scroller { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 8px; margin-bottom: 14px; scrollbar-width: none; }
   .month-scroller::-webkit-scrollbar { display: none; }
-  .month-chip { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .month-chip { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border2); background: var(--surface); color: var(--text2); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
   .month-chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .month-chip.selected-multi { background: var(--green); color: #fff; border-color: var(--green); }
+
   .big-stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 10px; }
   .big-stat-card .bsl { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; font-weight: 500; }
   .big-stat-card .bsv { font-size: 38px; font-weight: 600; font-family: 'DM Mono', monospace; letter-spacing: -1px; color: var(--text); }
@@ -146,12 +151,25 @@
   .mini-card .ms { font-size: 11px; color: var(--text3); margin-top: 2px; }
   .stats-week-list { display: flex; flex-direction: column; gap: 6px; }
   .stats-wk-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .stats-wk-row.has-ot { border-color: var(--green); }
   .stats-wk-row .swr-label { font-size: 13px; color: var(--text2); }
   .stats-wk-row .swr-right { text-align: right; }
   .stats-wk-row .swr-h { font-size: 13px; font-family: 'DM Mono', monospace; }
   .stats-wk-row .swr-earn { font-size: 12px; color: var(--green-dark); font-weight: 600; font-family: 'DM Mono', monospace; }
-  .stats-wk-row.has-ot { border-color: var(--green); }
 
+  /* MULTI MONTH SUMMARY */
+  .multi-month-summary { background: linear-gradient(135deg, var(--blue-light), var(--surface)); border: 1px solid rgba(24,95,165,0.3); border-radius: var(--radius); padding: 20px; margin-bottom: 12px; }
+  .multi-month-summary .mms-label { font-size: 11px; color: var(--blue); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; margin-bottom: 6px; }
+  .multi-month-summary .mms-val { font-size: 40px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--blue); letter-spacing: -1px; }
+  .multi-month-summary .mms-sub { font-size: 13px; color: var(--text2); margin-top: 6px; }
+  .multi-month-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 13px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .multi-month-row .mmr-label { font-size: 14px; font-weight: 500; }
+  .multi-month-row .mmr-right { text-align: right; }
+  .multi-month-row .mmr-pay { font-size: 15px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--green-dark); }
+  .multi-month-row .mmr-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .multi-hint { font-size: 12px; color: var(--text3); text-align: center; padding: 16px; }
+
+  /* SETTINGS */
   .settings-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; }
   .settings-group-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; padding: 14px 16px 8px; }
   .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; border-top: 1px solid var(--border); }
@@ -161,6 +179,7 @@
   .rate-input:focus { border-color: var(--blue); }
   .save-msg { font-size: 12px; color: var(--green-dark); font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-top: 8px; text-align: center; }
 
+  /* QUICK FILL */
   .qf-day-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; margin-bottom: 14px; }
   .qf-day-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border2); border-radius: 8px; background: var(--surface); cursor: pointer; font-family: 'DM Sans', sans-serif; gap: 2px; transition: all 0.15s; }
   .qf-day-btn.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
@@ -175,6 +194,15 @@
   .copy-week-row.selected { border-color: var(--blue); background: var(--blue-light); }
   .copy-week-row .cwr-label { font-size: 13px; }
   .copy-week-row .cwr-detail { font-size: 12px; color: var(--text3); font-family: 'DM Mono', monospace; }
+
+  /* BULK FILL */
+  .dow-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; margin-bottom: 14px; }
+  .dow-btn { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border2); border-radius: 8px; background: var(--surface); cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; color: var(--text2); transition: all 0.15s; }
+  .dow-btn.selected { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .block-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 10px; }
+  .block-row .form-row { margin: 0; }
+  .block-remove { background: none; border: 1px solid var(--border2); border-radius: var(--radius-sm); padding: 10px 10px; cursor: pointer; color: var(--red); font-size: 16px; align-self: end; }
+  .add-block-btn { background: none; border: 1px dashed var(--border2); border-radius: var(--radius-sm); width: 100%; padding: 11px; font-size: 13px; color: var(--blue); cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -193,7 +221,6 @@
     </div>
     <button class="punch-btn in" id="main-btn" onclick="punch()">Clock In</button>
     <button class="ghost-btn" onclick="showManual(null)">+ Add past entry</button>
-
     <div class="stat-grid">
       <div class="stat-card">
         <div class="slabel">This week</div>
@@ -206,25 +233,22 @@
         <div class="ssub" id="stat-ot-label">–</div>
       </div>
     </div>
-
     <div id="ot-banner" class="ot-banner" style="display:none">
       <div class="otl">Overtime this week</div>
       <div class="otv" id="ot-earn">$0.00</div>
       <div class="ots" id="ot-detail"></div>
     </div>
-
     <div class="monthly-banner">
-      <div class="mbl">
+      <div>
         <div class="mb-label">Monthly Pay Estimate</div>
         <div class="mb-val" id="monthly-total">$2,750.00</div>
         <div class="mb-sub" id="monthly-detail">Base $2,750 · No overtime yet</div>
       </div>
-      <div class="mb-ot">
+      <div>
         <div class="mb-ot-label">OT Hours</div>
-        <div class="mb-ot-val" id="monthly-ot-hours">0h 0m</div>
+        <div class="mb-ot-val" id="monthly-ot-hours">0h</div>
       </div>
     </div>
-
     <div class="form-card" style="margin-bottom:10px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.6px">Weekly Hours</div>
@@ -246,7 +270,6 @@
         </div>
       </div>
     </div>
-
     <div class="week-nav">
       <button class="wk-arrow" onclick="changeWeek(-1)">&#8592;</button>
       <span id="week-label">This week</span>
@@ -274,10 +297,7 @@
 
   <!-- ══ MANUAL ENTRY ══ -->
   <div id="manual-screen" class="screen">
-    <div class="top-bar">
-      <button class="nav-btn" onclick="cancelManual()">&#8592; Back</button>
-      <span></span>
-    </div>
+    <div class="top-bar"><button class="nav-btn" onclick="cancelManual()">&#8592; Back</button><span></span></div>
     <div style="margin-bottom:20px">
       <div style="font-size:22px;font-weight:600;letter-spacing:-0.4px;margin-bottom:4px">Add entry</div>
       <div style="font-size:14px;color:var(--text2)">Log hours for any date in the past year</div>
@@ -302,36 +322,53 @@
   <!-- ══ STATS ══ -->
   <div id="stats-screen" class="screen">
     <div class="top-bar"><h1>📊 Statistics</h1></div>
-    <div class="month-scroller" id="month-scroller"></div>
-    <div class="big-stat-card">
-      <div class="bsl">Total Monthly Pay</div>
-      <div class="bsv" id="s-earn">$2,750.00</div>
-      <div class="bssub" id="s-earn-sub">Base $2,750 · No overtime</div>
+    <div class="stats-tab-bar">
+      <button class="stats-tab active" id="stab-single" onclick="switchStatsTab('single')">Single Month</button>
+      <button class="stats-tab" id="stab-multi" onclick="switchStatsTab('multi')">Multi-Month Total</button>
     </div>
-    <div class="mini-grid">
-      <div class="mini-card">
-        <div class="ml">Hours Worked</div>
-        <div class="mv" id="s-hours">0h 0m</div>
-        <div class="ms" id="s-hours-sub"></div>
+
+    <!-- Single month view -->
+    <div id="stats-single">
+      <div class="month-scroller" id="month-scroller"></div>
+      <div class="big-stat-card">
+        <div class="bsl">Total Monthly Pay</div>
+        <div class="bsv" id="s-earn">$2,750.00</div>
+        <div class="bssub" id="s-earn-sub">Base $2,750 · No overtime</div>
       </div>
-      <div class="mini-card">
-        <div class="ml">OT Hours</div>
-        <div class="mv" style="color:var(--green-dark)" id="s-ot">—</div>
-        <div class="ms" id="s-ot-sub"></div>
+      <div class="mini-grid">
+        <div class="mini-card">
+          <div class="ml">Hours Worked</div>
+          <div class="mv" id="s-hours">0h 0m</div>
+          <div class="ms" id="s-hours-sub"></div>
+        </div>
+        <div class="mini-card">
+          <div class="ml">OT Hours</div>
+          <div class="mv" style="color:var(--green-dark)" id="s-ot">—</div>
+          <div class="ms" id="s-ot-sub"></div>
+        </div>
+        <div class="mini-card">
+          <div class="ml">Days Worked</div>
+          <div class="mv" id="s-days">0</div>
+          <div class="ms" id="s-days-sub"></div>
+        </div>
+        <div class="mini-card">
+          <div class="ml">OT Bonus</div>
+          <div class="mv" style="color:var(--green-dark)" id="s-ot-earn">$0.00</div>
+          <div class="ms">on top of base</div>
+        </div>
       </div>
-      <div class="mini-card">
-        <div class="ml">Days Worked</div>
-        <div class="mv" id="s-days">0</div>
-        <div class="ms" id="s-days-sub"></div>
-      </div>
-      <div class="mini-card">
-        <div class="ml">OT Bonus</div>
-        <div class="mv" style="color:var(--green-dark)" id="s-ot-earn">$0.00</div>
-        <div class="ms">on top of base</div>
+      <div class="section-label">Weeks this month</div>
+      <div class="stats-week-list" id="s-week-list"></div>
+    </div>
+
+    <!-- Multi-month view -->
+    <div id="stats-multi" style="display:none">
+      <div style="font-size:13px;color:var(--text2);margin-bottom:10px">Tap months to select them. Selected months are added together.</div>
+      <div class="month-scroller" id="multi-month-scroller"></div>
+      <div id="multi-summary-wrap">
+        <div class="multi-hint">Select at least one month above to see the total.</div>
       </div>
     </div>
-    <div class="section-label">Weeks this month</div>
-    <div class="stats-week-list" id="s-week-list"></div>
   </div>
 
   <!-- ══ SETTINGS ══ -->
@@ -340,30 +377,21 @@
     <div class="settings-group">
       <div class="settings-group-label">Monthly Salary</div>
       <div class="settings-row">
-        <div class="sr-left">
-          <div class="sr-label">Base Monthly Pay</div>
-          <div class="sr-sub">Fixed — always received</div>
-        </div>
+        <div class="sr-left"><div class="sr-label">Base Monthly Pay</div><div class="sr-sub">Fixed — always received</div></div>
         <div style="display:flex;align-items:center;gap:6px">
           <span style="font-size:14px;color:var(--text2)">$</span>
           <input class="rate-input" type="number" id="setting-monthly-salary" step="1" min="0" placeholder="2750" />
         </div>
       </div>
       <div class="settings-row">
-        <div class="sr-left">
-          <div class="sr-label">OT Threshold / Week</div>
-          <div class="sr-sub">Hours/week before OT kicks in</div>
-        </div>
+        <div class="sr-left"><div class="sr-label">OT Threshold / Week</div><div class="sr-sub">Hours/week before OT kicks in</div></div>
         <div style="display:flex;align-items:center;gap:6px">
           <input class="rate-input" type="number" id="setting-ot-threshold" step="1" min="1" placeholder="45" />
           <span style="font-size:14px;color:var(--text2)">h</span>
         </div>
       </div>
       <div class="settings-row">
-        <div class="sr-left">
-          <div class="sr-label">Overtime Rate</div>
-          <div class="sr-sub">Extra pay per OT hour</div>
-        </div>
+        <div class="sr-left"><div class="sr-label">Overtime Rate</div><div class="sr-sub">Extra pay per OT hour</div></div>
         <div style="display:flex;align-items:center;gap:6px">
           <span style="font-size:14px;color:var(--text2)">$</span>
           <input class="rate-input" type="number" id="setting-ot-rate" step="0.01" min="0" placeholder="20" />
@@ -377,33 +405,63 @@
   <!-- ══ QUICK FILL ══ -->
   <div id="quickfill-screen" class="screen">
     <div class="top-bar"><h1>⚡ Quick Fill</h1></div>
+
+    <!-- Bulk month fill -->
     <div class="form-card">
-      <h3>1 · Select days to fill</h3>
-      <div class="qf-day-grid" id="qf-day-grid"></div>
-      <div style="font-size:12px;color:var(--text3)">Tap days to toggle. Green border = already has data.</div>
+      <h3>📅 Fill a whole month</h3>
+      <div class="form-row">
+        <label>Month</label>
+        <select id="bulk-month-select"></select>
+      </div>
+      <div style="margin-bottom:10px">
+        <label style="font-size:12px;color:var(--text2);font-weight:500;display:block;margin-bottom:8px">Days of the week</label>
+        <div class="dow-grid" id="bulk-dow-grid">
+          <button class="dow-btn selected" data-dow="1">Mon</button>
+          <button class="dow-btn selected" data-dow="2">Tue</button>
+          <button class="dow-btn selected" data-dow="3">Wed</button>
+          <button class="dow-btn selected" data-dow="4">Thu</button>
+          <button class="dow-btn selected" data-dow="5">Fri</button>
+          <button class="dow-btn" data-dow="6">Sat</button>
+          <button class="dow-btn" data-dow="0">Sun</button>
+        </div>
+      </div>
+      <div style="margin-bottom:10px">
+        <label style="font-size:12px;color:var(--text2);font-weight:500;display:block;margin-bottom:8px">Time blocks</label>
+        <div id="bulk-blocks"></div>
+        <button class="add-block-btn" onclick="addTimeBlock()">+ Add time block</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <input type="checkbox" id="bulk-skip-existing" checked style="width:auto;margin:0" />
+        <label for="bulk-skip-existing" style="font-size:13px;color:var(--text2);margin:0;font-weight:400">Skip days that already have entries</label>
+      </div>
+      <button class="primary-btn" onclick="applyBulkFill()">Fill Month</button>
     </div>
+
+    <!-- Current week quick fill -->
     <div class="form-card">
-      <h3>2 · Choose a template</h3>
+      <h3>⚡ Fill current week</h3>
+      <div class="qf-day-grid" id="qf-day-grid"></div>
       <div class="template-chips">
-        <button class="chip" onclick="selectTemplate(this,'09:00','17:00')">9–5 (8h)</button>
-        <button class="chip" onclick="selectTemplate(this,'08:00','16:00')">8–4 (8h)</button>
-        <button class="chip" onclick="selectTemplate(this,'07:00','15:00')">7–3 (8h)</button>
-        <button class="chip" onclick="selectTemplate(this,'08:00','17:00')">8–5 (9h)</button>
-        <button class="chip" onclick="selectTemplate(this,'09:00','18:00')">9–6 (9h)</button>
-        <button class="chip" onclick="selectTemplate(this,'06:00','14:00')">6–2 (8h)</button>
+        <button class="chip" onclick="selectTemplate(this,'09:00','17:00')">9–5</button>
+        <button class="chip" onclick="selectTemplate(this,'08:00','16:00')">8–4</button>
+        <button class="chip" onclick="selectTemplate(this,'07:00','15:00')">7–3</button>
+        <button class="chip" onclick="selectTemplate(this,'08:00','17:00')">8–5</button>
+        <button class="chip" onclick="selectTemplate(this,'06:00','14:00')">6–2</button>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
-        <div class="form-row" style="margin:0"><label>Custom start</label><input type="time" id="qf-start" /></div>
-        <div class="form-row" style="margin:0"><label>Custom end</label><input type="time" id="qf-end" /></div>
+        <div class="form-row" style="margin:0"><label>Start</label><input type="time" id="qf-start" /></div>
+        <div class="form-row" style="margin:0"><label>End</label><input type="time" id="qf-end" /></div>
       </div>
+      <button class="primary-btn" style="margin-top:12px" onclick="applyWeekFill()">Apply to Selected Days</button>
     </div>
+
+    <!-- Copy a past week -->
     <div class="form-card">
-      <h3>3 · Or copy an existing week</h3>
-      <div style="font-size:13px;color:var(--text2);margin-bottom:10px">Pick a past week to duplicate into the current week</div>
+      <h3>📋 Copy a past week</h3>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:10px">Duplicates all entries into the current week</div>
       <div class="copy-week-list" id="copy-week-list"></div>
+      <button class="primary-btn" style="margin-top:12px" onclick="applyCopyWeek()">Copy into This Week</button>
     </div>
-    <button class="primary-btn" onclick="applyQuickFill()">Apply to Selected Days</button>
-    <button class="secondary-btn" onclick="switchTab('home')">Cancel</button>
   </div>
 
   <!-- ══ TAB BAR ══ -->
@@ -417,14 +475,16 @@
 
 <script>
 // ── CONFIG ──
-let MONTHLY_SALARY    = parseFloat(localStorage.getItem('wtt_monthly_salary')    || '2750');
-let OT_THRESHOLD      = parseFloat(localStorage.getItem('wtt_ot_threshold')      || '45');
-let OT_RATE           = parseFloat(localStorage.getItem('wtt_ot_rate')           || '20');
+let MONTHLY_SALARY = parseFloat(localStorage.getItem('wtt_monthly_salary') || '2750');
+let OT_THRESHOLD   = parseFloat(localStorage.getItem('wtt_ot_threshold')   || '45');
+let OT_RATE        = parseFloat(localStorage.getItem('wtt_ot_rate')        || '20');
 
 let state = { clockedIn: false, clockInTime: null, weekOffset: 0, viewDay: null, manualFrom: null, activeTab: 'home' };
 let db = loadDb();
 let qfSelectedDays = new Set();
 let qfCopyWeek = null;
+let multiSelectedMonths = new Set(); // for multi-month stats
+let timeBlocks = []; // for bulk fill
 
 function loadDb() { try { return JSON.parse(localStorage.getItem('wtt_db') || '{}'); } catch(e) { return {}; } }
 function saveDb() { localStorage.setItem('wtt_db', JSON.stringify(db)); }
@@ -442,49 +502,54 @@ function weekDays(offset) {
 function totalHoursForWeek(days) {
   return days.reduce((acc,d) => acc + (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0), 0);
 }
-
-// Core pay logic:
-// - Base salary is always $MONTHLY_SALARY for the month
-// - Each week hour beyond OT_THRESHOLD earns OT_RATE extra
 function weekOTHours(h) { return Math.max(0, h - OT_THRESHOLD); }
-function weekOTEarnings(h) { return weekOTHours(h) * OT_RATE; }
 
-// Returns all weeks that overlap the given month
-function weeksForMonth(year, month) {
-  const firstDay = new Date(year, month, 1);
-  const lastDay  = new Date(year, month+1, 0);
-  const weeks = [];
-  let cursor = getMondayOf(firstDay);
-  while (cursor <= lastDay) {
-    weeks.push(Array.from({length:7}, (_,i) => { const d = new Date(cursor); d.setDate(d.getDate()+i); return d; }));
-    cursor = new Date(cursor); cursor.setDate(cursor.getDate()+7);
-  }
-  return weeks;
-}
-
+// ── KEY FIX: OT belongs to the month of Monday ──
+// A week's overtime is assigned entirely to the month that contains Monday of that week.
+// This prevents double-counting for split weeks.
 function calcMonthStats(year, month) {
   const daysInMonth = new Date(year, month+1, 0).getDate();
   let totalH = 0, daysWorked = 0, totalOTH = 0;
+
+  // Count hours and days worked within the month
   for (let d = 1; d <= daysInMonth; d++) {
     const k = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const h = (db[k]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0);
     if (h > 0) { totalH += h; daysWorked++; }
   }
-  const weeks = weeksForMonth(year, month);
+
+  // Find all weeks whose MONDAY falls in this month
+  // and sum their OT hours
   const weeksData = [];
-  weeks.forEach(wdays => {
-    // hours only within this month for display
-    let monthH = 0;
-    wdays.forEach(d => {
-      if (d.getMonth() === month && d.getFullYear() === year)
-        monthH += (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0);
-    });
-    const wH  = totalHoursForWeek(wdays); // full week for OT calc
-    const otH = weekOTHours(wH);
-    totalOTH += otH;
-    if (monthH > 0 || otH > 0)
-      weeksData.push({ label: fmtShortDate(wdays[0]) + ' – ' + fmtShortDate(wdays[6]), h: monthH, otH, otEarn: otH * OT_RATE });
-  });
+  const firstDay = new Date(year, month, 1);
+  const lastDay  = new Date(year, month, daysInMonth);
+
+  // Scan from the Monday of the first day to the Monday of the last day
+  let cursor = getMondayOf(firstDay);
+  const seen = new Set();
+  while (cursor <= lastDay) {
+    const monKey = cursor.toISOString().slice(0,10);
+    if (!seen.has(monKey)) {
+      seen.add(monKey);
+      // Only include this week if Monday is in this month
+      if (cursor.getMonth() === month && cursor.getFullYear() === year) {
+        const wdays = Array.from({length:7}, (_,i) => { const d = new Date(cursor); d.setDate(d.getDate()+i); return d; });
+        const wH  = totalHoursForWeek(wdays);
+        const otH = weekOTHours(wH);
+        totalOTH += otH;
+        // For display: hours within month only
+        let monthH = 0;
+        wdays.forEach(d => {
+          if (d.getMonth() === month && d.getFullYear() === year)
+            monthH += (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0);
+        });
+        if (monthH > 0 || wH > 0)
+          weeksData.push({ label: fmtShortDate(wdays[0]) + ' – ' + fmtShortDate(wdays[6]), h: monthH, otH, otEarn: otH * OT_RATE });
+      }
+    }
+    cursor = new Date(cursor); cursor.setDate(cursor.getDate()+7);
+  }
+
   const otEarn   = totalOTH * OT_RATE;
   const totalPay = MONTHLY_SALARY + otEarn;
   return { totalH, daysWorked, daysInMonth, totalOTH, otEarn, totalPay, weeksData };
@@ -494,6 +559,7 @@ function fmtHM(h) { const hh = Math.floor(h), mm = Math.round((h-hh)*60); return
 function fmtTime(ts) { return new Date(ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
 function fmtDate(d)  { return new Date(d).toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'}); }
 function fmtShortDate(d) { return new Date(d).toLocaleDateString([],{month:'short',day:'numeric'}); }
+function fmtMonthLabel(year, month) { return new Date(year,month,1).toLocaleDateString([],{month:'long',year:'numeric'}); }
 
 // ── CLOCK ──
 let clockInterval;
@@ -541,49 +607,47 @@ function renderWeek() {
   let totalH = totalHoursForWeek(days);
   if (state.clockedIn && isNow) totalH += (Date.now() - state.clockInTime) / 3600000;
 
-  const otH    = weekOTHours(totalH);
-  const otEarn = otH * OT_RATE;
-  const regH   = Math.min(totalH, OT_THRESHOLD);
-  const remH   = Math.max(0, OT_THRESHOLD - totalH);
+  const otH  = weekOTHours(totalH);
+  const regH = Math.min(totalH, OT_THRESHOLD);
+  const remH = Math.max(0, OT_THRESHOLD - totalH);
 
-  document.getElementById('stat-week').textContent   = fmtHM(totalH);
-  document.getElementById('stat-earn').textContent   = otH > 0 ? '+$' + otEarn.toFixed(2) : '$0.00';
+  document.getElementById('stat-week').textContent     = fmtHM(totalH);
+  document.getElementById('stat-earn').textContent     = otH > 0 ? '+$' + (otH * OT_RATE).toFixed(2) : '$0.00';
   document.getElementById('stat-ot-label').textContent = otH > 0 ? fmtHM(otH) + ' overtime' : 'no overtime yet';
-  document.getElementById('stat-sub').textContent    = otH > 0 ? fmtHM(regH) + ' regular' : (remH > 0 ? remH.toFixed(1) + 'h to overtime' : '');
+  document.getElementById('stat-sub').textContent      = otH > 0 ? fmtHM(regH) + ' regular' : (remH > 0 ? remH.toFixed(1) + 'h to overtime' : '');
 
   if (otH > 0) {
     document.getElementById('ot-banner').style.display = 'block';
-    document.getElementById('ot-earn').textContent  = '+$' + otEarn.toFixed(2);
+    document.getElementById('ot-earn').textContent  = '+$' + (otH * OT_RATE).toFixed(2);
     document.getElementById('ot-detail').textContent = fmtHM(otH) + ' overtime @ $' + OT_RATE.toFixed(2) + '/hr';
   } else {
     document.getElementById('ot-banner').style.display = 'none';
   }
 
-  // Progress bar
   const pct = Math.min(100, (totalH / OT_THRESHOLD) * 100);
   document.getElementById('week-prog-label').textContent = fmtHM(totalH) + ' / ' + OT_THRESHOLD + 'h';
   document.getElementById('week-prog-bar').style.width   = pct + '%';
   document.getElementById('week-prog-bar').style.background = otH > 0 ? 'var(--green-dark)' : 'var(--green)';
-  document.getElementById('week-reg-h').textContent  = fmtHM(regH);
-  document.getElementById('week-ot-h').textContent   = otH > 0 ? fmtHM(otH) : '—';
-  document.getElementById('week-ot-h').style.color   = otH > 0 ? 'var(--green-dark)' : 'var(--text3)';
-  document.getElementById('week-rem-h').textContent  = remH > 0 ? fmtHM(remH) : '✓ Done';
-  document.getElementById('week-rem-h').style.color  = remH > 0 ? 'var(--amber)' : 'var(--green)';
+  document.getElementById('week-reg-h').textContent = fmtHM(regH);
+  document.getElementById('week-ot-h').textContent  = otH > 0 ? fmtHM(otH) : '—';
+  document.getElementById('week-ot-h').style.color  = otH > 0 ? 'var(--green-dark)' : 'var(--text3)';
+  document.getElementById('week-rem-h').textContent = remH > 0 ? fmtHM(remH) : '✓ Done';
+  document.getElementById('week-rem-h').style.color = remH > 0 ? 'var(--amber)' : 'var(--green)';
 
-  // Monthly banner — scan current month's weeks
+  // Monthly banner
   const now2 = new Date();
-  const { totalOTH, otEarn: monthOTEarn, totalPay } = calcMonthStats(now2.getFullYear(), now2.getMonth());
-  document.getElementById('monthly-total').textContent   = '$' + totalPay.toFixed(2);
+  const { totalOTH, otEarn, totalPay } = calcMonthStats(now2.getFullYear(), now2.getMonth());
+  document.getElementById('monthly-total').textContent    = '$' + totalPay.toFixed(2);
   document.getElementById('monthly-ot-hours').textContent = totalOTH > 0 ? fmtHM(totalOTH) : '0h';
-  document.getElementById('monthly-detail').textContent  = totalOTH > 0
-    ? 'Base $' + MONTHLY_SALARY.toFixed(0) + ' + $' + monthOTEarn.toFixed(2) + ' OT bonus'
-    : 'Base $' + MONTHLY_SALARY.toFixed(0) + ' · No overtime yet this month';
+  document.getElementById('monthly-detail').textContent   = totalOTH > 0
+    ? 'Base $' + MONTHLY_SALARY.toFixed(0) + ' + $' + otEarn.toFixed(2) + ' OT'
+    : 'Base $' + MONTHLY_SALARY.toFixed(0) + ' · No overtime yet';
 
-  // Day list
-  const hours = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0));
-  const maxH  = Math.max(...hours, 0.001);
+  // Day rows
+  const hours  = days.map(d => (db[dayKey(d)]?.entries||[]).reduce((s,e) => s+(e.end-e.start)/3600000, 0));
+  const maxH   = Math.max(...hours, 0.001);
   const DNAMES = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const list = document.getElementById('day-list'); list.innerHTML = '';
+  const list   = document.getElementById('day-list'); list.innerHTML = '';
   days.forEach((d,i) => {
     const k = dayKey(d), h = hours[i], hasNotes = (db[k]?.notes||[]).length > 0;
     const row = document.createElement('div');
@@ -599,10 +663,10 @@ function switchTab(tab) {
   state.activeTab = tab;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-  if (tab === 'home')      { document.getElementById('home-screen').classList.add('active');      document.getElementById('tab-home').classList.add('active');      renderWeek(); }
-  else if (tab === 'stats')     { document.getElementById('stats-screen').classList.add('active');     document.getElementById('tab-stats').classList.add('active');     renderStats(); }
-  else if (tab === 'settings')  { document.getElementById('settings-screen').classList.add('active');  document.getElementById('tab-settings').classList.add('active');  loadSettingsUI(); }
-  else if (tab === 'quickfill') { document.getElementById('quickfill-screen').classList.add('active'); document.getElementById('tab-quickfill').classList.add('active'); renderQuickFill(); }
+  if      (tab==='home')      { document.getElementById('home-screen').classList.add('active');      document.getElementById('tab-home').classList.add('active');      renderWeek(); }
+  else if (tab==='stats')     { document.getElementById('stats-screen').classList.add('active');     document.getElementById('tab-stats').classList.add('active');     renderStats(); }
+  else if (tab==='settings')  { document.getElementById('settings-screen').classList.add('active');  document.getElementById('tab-settings').classList.add('active');  loadSettingsUI(); }
+  else if (tab==='quickfill') { document.getElementById('quickfill-screen').classList.add('active'); document.getElementById('tab-quickfill').classList.add('active'); renderQuickFill(); }
 }
 function showHome() { switchTab('home'); }
 
@@ -626,7 +690,7 @@ function showDay(d) {
     card.innerHTML = `<div class="ei"><div class="et">${fmtTime(e.start)} – ${fmtTime(e.end)}${e.manual?'<span class="manual-badge">manual</span>':''}</div><div class="ed">${fmtHM(dur)}</div>${note?`<div class="en">${note.text}</div>`:''}</div><div class="entry-actions"><button class="dup-btn" onclick="duplicateEntry('${k}',${i})">⧉ Copy</button><button class="del-btn" onclick="deleteEntry('${k}',${i})">×</button></div>`;
     entDiv.appendChild(card);
   });
-  notes.filter(n => n.entryIndex === undefined).forEach((n,ni) => {
+  notes.filter(n => n.entryIndex===undefined).forEach((n,ni) => {
     const card = document.createElement('div'); card.className = 'entry-card';
     card.innerHTML = `<div class="ei"><div class="et">Note</div><div class="en">${n.text}</div></div><button class="del-btn" onclick="deleteStandaloneNote('${k}',${ni})">×</button>`;
     entDiv.appendChild(card);
@@ -664,10 +728,9 @@ function showManual(d) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('manual-screen').classList.add('active');
   const today = new Date(), yearAgo = new Date(); yearAgo.setFullYear(yearAgo.getFullYear()-1);
-  const dateInput = document.getElementById('m-date');
-  dateInput.max = today.toISOString().slice(0,10);
-  dateInput.min = yearAgo.toISOString().slice(0,10);
-  dateInput.value = d ? dayKey(d) : today.toISOString().slice(0,10);
+  const di = document.getElementById('m-date');
+  di.max = today.toISOString().slice(0,10); di.min = yearAgo.toISOString().slice(0,10);
+  di.value = d ? dayKey(d) : today.toISOString().slice(0,10);
   document.getElementById('m-start').value = ''; document.getElementById('m-end').value = ''; document.getElementById('m-note').value = '';
   document.getElementById('m-error').style.display = 'none';
 }
@@ -678,11 +741,11 @@ function saveManual() {
   const endVal   = document.getElementById('m-end').value;
   const noteVal  = document.getElementById('m-note').value.trim();
   const errEl    = document.getElementById('m-error');
-  if (!dateVal||!startVal||!endVal) { errEl.textContent='Please fill in the date, start time, and end time.'; errEl.style.display='block'; return; }
+  if (!dateVal||!startVal||!endVal) { errEl.textContent='Please fill in date, start and end time.'; errEl.style.display='block'; return; }
   const startTs = new Date(dateVal+'T'+startVal).getTime();
   const endTs   = new Date(dateVal+'T'+endVal).getTime();
-  if (endTs <= startTs)          { errEl.textContent='End time must be after start time.'; errEl.style.display='block'; return; }
-  if ((endTs-startTs)>16*3600000){ errEl.textContent='A single entry cannot exceed 16 hours.'; errEl.style.display='block'; return; }
+  if (endTs<=startTs)           { errEl.textContent='End time must be after start time.'; errEl.style.display='block'; return; }
+  if ((endTs-startTs)>16*3600000){ errEl.textContent='Entry cannot exceed 16 hours.'; errEl.style.display='block'; return; }
   errEl.style.display = 'none';
   const day = getDay(dateVal), entryIndex = day.entries.length;
   day.entries.push({start:startTs, end:endTs, manual:true}); day.entries.sort((a,b)=>a.start-b.start);
@@ -698,8 +761,8 @@ function showYear() {
   for (let w=-51; w<=0; w++) {
     const days = weekDays(w), h = totalHoursForWeek(days);
     if (h > 0) {
-      const otH = weekOTHours(h), otEarn = otH * OT_RATE;
-      weeks.push({ label: fmtShortDate(days[0]) + ' – ' + fmtShortDate(days[6]), h, otH, otEarn, isCurrent: w===0 });
+      const otH = weekOTHours(h);
+      weeks.push({ label: fmtShortDate(days[0]) + ' – ' + fmtShortDate(days[6]), h, otH, otEarn: otH * OT_RATE, isCurrent: w===0 });
     }
   }
   const wrap = document.getElementById('year-content');
@@ -711,7 +774,17 @@ function showYear() {
   html += '</tbody></table>'; wrap.innerHTML = html;
 }
 
-// ── STATS SCREEN ──
+// ── STATS ──
+let currentStatsTab = 'single';
+function switchStatsTab(tab) {
+  currentStatsTab = tab;
+  document.getElementById('stab-single').classList.toggle('active', tab==='single');
+  document.getElementById('stab-multi').classList.toggle('active',  tab==='multi');
+  document.getElementById('stats-single').style.display = tab==='single' ? 'block' : 'none';
+  document.getElementById('stats-multi').style.display  = tab==='multi'  ? 'block' : 'none';
+  if (tab === 'multi') renderMultiMonthPicker();
+}
+
 function renderStats() {
   const now = new Date();
   const months = [];
@@ -719,9 +792,9 @@ function renderStats() {
   const scroller = document.getElementById('month-scroller'); scroller.innerHTML = '';
   months.forEach((m,idx) => {
     const label = new Date(m.year,m.month,1).toLocaleDateString([],{month:'short',year:'numeric'});
-    const chip  = document.createElement('button'); chip.className = 'month-chip' + (idx===months.length-1?' active':'');
+    const chip  = document.createElement('button'); chip.className = 'month-chip'+(idx===months.length-1?' active':'');
     chip.textContent = label;
-    chip.onclick = () => { document.querySelectorAll('.month-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); renderMonthStats(m.year,m.month); };
+    chip.onclick = () => { document.querySelectorAll('#month-scroller .month-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); renderMonthStats(m.year,m.month); };
     scroller.appendChild(chip);
   });
   renderMonthStats(now.getFullYear(), now.getMonth());
@@ -730,27 +803,90 @@ function renderStats() {
 
 function renderMonthStats(year, month) {
   const { totalH, daysWorked, daysInMonth, totalOTH, otEarn, totalPay, weeksData } = calcMonthStats(year, month);
-
-  document.getElementById('s-earn').textContent    = '$' + totalPay.toFixed(2);
+  document.getElementById('s-earn').textContent     = '$' + totalPay.toFixed(2);
   document.getElementById('s-earn-sub').textContent = totalOTH > 0
     ? 'Base $' + MONTHLY_SALARY.toFixed(0) + ' + $' + otEarn.toFixed(2) + ' OT bonus'
     : 'Base $' + MONTHLY_SALARY.toFixed(0) + ' · No overtime this month';
-
   document.getElementById('s-hours').textContent    = fmtHM(totalH);
   document.getElementById('s-hours-sub').textContent = daysWorked + ' days worked';
   document.getElementById('s-ot').textContent       = totalOTH > 0 ? fmtHM(totalOTH) : '—';
-  document.getElementById('s-ot-sub').textContent   = totalOTH > 0 ? fmtHM(totalOTH) + ' over ' + OT_THRESHOLD + 'h/wk limit' : 'Under ' + OT_THRESHOLD + 'h every week';
+  document.getElementById('s-ot-sub').textContent   = totalOTH > 0 ? 'Over ' + OT_THRESHOLD + 'h/wk limit' : 'Under ' + OT_THRESHOLD + 'h every week';
   document.getElementById('s-days').textContent     = daysWorked;
   document.getElementById('s-days-sub').textContent = 'of ' + daysInMonth + ' days';
   document.getElementById('s-ot-earn').textContent  = otEarn > 0 ? '+$' + otEarn.toFixed(2) : '$0.00';
-
   const wkList = document.getElementById('s-week-list'); wkList.innerHTML = '';
   if (!weeksData.length) { wkList.innerHTML='<div class="empty-state" style="padding:20px">No data this month</div>'; return; }
   weeksData.forEach(w => {
-    const row = document.createElement('div'); row.className = 'stats-wk-row' + (w.otH > 0 ? ' has-ot' : '');
+    const row = document.createElement('div'); row.className = 'stats-wk-row'+(w.otH>0?' has-ot':'');
     row.innerHTML = `<div class="swr-label">${w.label}</div><div class="swr-right"><div class="swr-h">${fmtHM(w.h)}</div><div class="swr-earn">${w.otH>0?'+$'+w.otEarn.toFixed(2)+' OT':'No OT'}</div></div>`;
     wkList.appendChild(row);
   });
+}
+
+// ── MULTI-MONTH STATS ──
+function renderMultiMonthPicker() {
+  const now = new Date();
+  const months = [];
+  for (let i=11; i>=0; i--) { const d=new Date(now.getFullYear(),now.getMonth()-i,1); months.push({year:d.getFullYear(),month:d.getMonth()}); }
+  const scroller = document.getElementById('multi-month-scroller'); scroller.innerHTML = '';
+  months.forEach(m => {
+    const key   = m.year + '-' + m.month;
+    const label = new Date(m.year,m.month,1).toLocaleDateString([],{month:'short',year:'numeric'});
+    const chip  = document.createElement('button');
+    chip.className   = 'month-chip' + (multiSelectedMonths.has(key) ? ' selected-multi' : '');
+    chip.textContent = label;
+    chip.onclick = () => {
+      if (multiSelectedMonths.has(key)) { multiSelectedMonths.delete(key); chip.classList.remove('selected-multi'); }
+      else { multiSelectedMonths.add(key); chip.classList.add('selected-multi'); }
+      renderMultiSummary(months);
+    };
+    scroller.appendChild(chip);
+  });
+  renderMultiSummary(months);
+  scroller.scrollLeft = scroller.scrollWidth;
+}
+
+function renderMultiSummary(months) {
+  const wrap = document.getElementById('multi-summary-wrap');
+  const selected = months.filter(m => multiSelectedMonths.has(m.year + '-' + m.month));
+  if (!selected.length) { wrap.innerHTML = '<div class="multi-hint">Select at least one month above to see the total.</div>'; return; }
+
+  let grandTotal = 0, grandHours = 0, grandOTH = 0, grandOTEarn = 0;
+  const rows = selected.map(m => {
+    const { totalH, totalOTH, otEarn, totalPay } = calcMonthStats(m.year, m.month);
+    grandTotal   += totalPay;
+    grandHours   += totalH;
+    grandOTH     += totalOTH;
+    grandOTEarn  += otEarn;
+    return { label: fmtMonthLabel(m.year, m.month), totalH, totalOTH, otEarn, totalPay };
+  });
+
+  let html = `
+    <div class="multi-month-summary">
+      <div class="mms-label">${selected.length} month${selected.length>1?'s':''} selected</div>
+      <div class="mms-val">$${grandTotal.toFixed(2)}</div>
+      <div class="mms-sub">
+        ${selected.length} × base $${MONTHLY_SALARY.toFixed(0)} = $${(selected.length*MONTHLY_SALARY).toFixed(2)}
+        ${grandOTEarn > 0 ? ' + $' + grandOTEarn.toFixed(2) + ' OT bonus' : ''}
+      </div>
+    </div>
+    <div class="mini-grid" style="margin-bottom:14px">
+      <div class="mini-card"><div class="ml">Total Hours</div><div class="mv">${fmtHM(grandHours)}</div></div>
+      <div class="mini-card"><div class="ml">Total OT Hours</div><div class="mv" style="color:var(--green-dark)">${grandOTH>0?fmtHM(grandOTH):'—'}</div></div>
+    </div>
+    <div class="section-label" style="margin-top:0">Breakdown by month</div>`;
+
+  rows.forEach(r => {
+    html += `<div class="multi-month-row">
+      <div class="mmr-label">${r.label}</div>
+      <div class="mmr-right">
+        <div class="mmr-pay">$${r.totalPay.toFixed(2)}</div>
+        <div class="mmr-sub">${r.totalOTH>0?fmtHM(r.totalOTH)+' OT · +$'+r.otEarn.toFixed(2):'No overtime'}</div>
+      </div>
+    </div>`;
+  });
+
+  wrap.innerHTML = html;
 }
 
 // ── SETTINGS ──
@@ -774,6 +910,30 @@ function saveSettings() {
 
 // ── QUICK FILL ──
 function renderQuickFill() {
+  // Populate bulk month selector
+  const sel = document.getElementById('bulk-month-select'); sel.innerHTML = '';
+  const now = new Date();
+  for (let i=11; i>=0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+    const opt = document.createElement('option');
+    opt.value = d.getFullYear() + '-' + d.getMonth();
+    opt.textContent = fmtMonthLabel(d.getFullYear(), d.getMonth());
+    if (i===0) opt.selected = true;
+    sel.appendChild(opt);
+  }
+
+  // DOW buttons toggle
+  document.querySelectorAll('.dow-btn').forEach(btn => {
+    btn.onclick = () => btn.classList.toggle('selected');
+  });
+
+  // Init time blocks
+  timeBlocks = [];
+  document.getElementById('bulk-blocks').innerHTML = '';
+  addTimeBlock('06:00','09:00');
+  addTimeBlock('14:00','20:00');
+
+  // Current week day grid
   qfSelectedDays.clear(); qfCopyWeek = null;
   const days = weekDays(0);
   const grid = document.getElementById('qf-day-grid'); grid.innerHTML = '';
@@ -782,9 +942,11 @@ function renderQuickFill() {
     const k = dayKey(d), h = (db[k]?.entries||[]).reduce((s,e)=>s+(e.end-e.start)/3600000,0);
     const btn = document.createElement('button'); btn.className = 'qf-day-btn'+(h>0?' has-data':'');
     btn.innerHTML = `<span class="qfd-name">${DNAMES[i]}</span><span class="qfd-h">${h>0?Math.round(h)+'h':'—'}</span>`;
-    btn.onclick = () => { if (qfSelectedDays.has(k)) { qfSelectedDays.delete(k); btn.classList.remove('selected'); } else { qfSelectedDays.add(k); btn.classList.add('selected'); } };
+    btn.onclick = () => { if(qfSelectedDays.has(k)){qfSelectedDays.delete(k);btn.classList.remove('selected');}else{qfSelectedDays.add(k);btn.classList.add('selected');} };
     grid.appendChild(btn);
   });
+
+  // Copy week list
   const cwList = document.getElementById('copy-week-list'); cwList.innerHTML = '';
   for (let w=-1; w>=-12; w--) {
     const wdays = weekDays(w), wH = totalHoursForWeek(wdays);
@@ -796,43 +958,112 @@ function renderQuickFill() {
     }
   }
   if (!cwList.children.length) cwList.innerHTML = '<div style="font-size:13px;color:var(--text3);padding:10px 0">No past weeks with data yet.</div>';
-  document.getElementById('qf-start').value = ''; document.getElementById('qf-end').value = '';
+
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('qf-start').value = '';
+  document.getElementById('qf-end').value   = '';
 }
+
+function addTimeBlock(startVal='', endVal='') {
+  const id = Date.now() + Math.random();
+  timeBlocks.push(id);
+  const wrap = document.getElementById('bulk-blocks');
+  const row  = document.createElement('div'); row.className = 'block-row'; row.dataset.id = id;
+  row.innerHTML = `
+    <div class="form-row"><label>Start</label><input type="time" class="block-start" value="${startVal}" /></div>
+    <div class="form-row"><label>End</label><input type="time" class="block-end" value="${endVal}" /></div>
+    <button class="block-remove" onclick="removeTimeBlock(this, ${id})">×</button>`;
+  wrap.appendChild(row);
+}
+function removeTimeBlock(btn, id) {
+  timeBlocks = timeBlocks.filter(b => b !== id);
+  btn.closest('.block-row').remove();
+}
+
+function applyBulkFill() {
+  const [bulkYear, bulkMonth] = document.getElementById('bulk-month-select').value.split('-').map(Number);
+  const skipExisting = document.getElementById('bulk-skip-existing').checked;
+
+  // Which days of week are selected (0=Sun, 1=Mon … 6=Sat)
+  const selectedDOWs = new Set();
+  document.querySelectorAll('.dow-btn.selected').forEach(btn => selectedDOWs.add(parseInt(btn.dataset.dow)));
+
+  if (!selectedDOWs.size) { alert('Please select at least one day of the week.'); return; }
+
+  // Collect time blocks
+  const blocks = [];
+  document.querySelectorAll('.block-row').forEach(row => {
+    const s = row.querySelector('.block-start').value;
+    const e = row.querySelector('.block-end').value;
+    if (s && e) blocks.push({start:s, end:e});
+  });
+  if (!blocks.length) { alert('Please add at least one time block.'); return; }
+
+  const daysInMonth = new Date(bulkYear, bulkMonth+1, 0).getDate();
+  let filled = 0, skipped = 0;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(bulkYear, bulkMonth, d);
+    const dow  = date.getDay(); // 0=Sun … 6=Sat
+    if (!selectedDOWs.has(dow)) continue;
+
+    const k = dayKey(date);
+    if (skipExisting && db[k]?.entries?.length > 0) { skipped++; continue; }
+
+    blocks.forEach(block => {
+      const startTs = new Date(`${k}T${block.start}`).getTime();
+      const endTs   = new Date(`${k}T${block.end}`).getTime();
+      if (endTs > startTs) {
+        getDay(k).entries.push({start:startTs, end:endTs, manual:true});
+        getDay(k).entries.sort((a,b) => a.start-b.start);
+        filled++;
+      }
+    });
+  }
+
+  saveDb();
+  const msg = `✓ Filled ${Math.floor(filled/blocks.length)} day(s) with ${blocks.length} block(s) each.` + (skipped ? `\n${skipped} day(s) skipped (already had entries).` : '');
+  alert(msg);
+  switchTab('home');
+}
+
 function selectTemplate(el, start, end) {
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected')); el.classList.add('selected');
-  document.getElementById('qf-start').value = start; document.getElementById('qf-end').value = end; qfCopyWeek = null;
-  document.querySelectorAll('.copy-week-row').forEach(r=>r.classList.remove('selected'));
+  document.getElementById('qf-start').value = start; document.getElementById('qf-end').value = end;
 }
-function applyQuickFill() {
-  if (qfCopyWeek !== null) {
-    const srcDays = weekDays(qfCopyWeek), tgtDays = weekDays(0); let count = 0;
-    srcDays.forEach((sd,i) => {
-      const sk = dayKey(sd), tk = dayKey(tgtDays[i]);
-      (db[sk]?.entries||[]).forEach(e => {
-        const dur = e.end-e.start, srcDate = new Date(e.start), tgtDate = new Date(tgtDays[i]);
-        tgtDate.setHours(srcDate.getHours(),srcDate.getMinutes(),0,0);
-        getDay(tk).entries.push({start:tgtDate.getTime(), end:tgtDate.getTime()+dur, manual:true}); count++;
-      });
-      if ((db[sk]?.entries||[]).length) getDay(tk).entries.sort((a,b)=>a.start-b.start);
-    });
-    saveDb(); alert(`Copied ${count} entries from that week into this week ✓`); switchTab('home'); return;
-  }
+
+function applyWeekFill() {
   const startVal = document.getElementById('qf-start').value, endVal = document.getElementById('qf-end').value;
   if (!startVal||!endVal) { alert('Please choose a template or set custom start/end times.'); return; }
-  if (qfSelectedDays.size === 0) { alert('Please select at least one day.'); return; }
+  if (!qfSelectedDays.size) { alert('Please select at least one day.'); return; }
   qfSelectedDays.forEach(k => {
     const startTs = new Date(k+'T'+startVal).getTime(), endTs = new Date(k+'T'+endVal).getTime();
-    if (endTs > startTs) { getDay(k).entries.push({start:startTs, end:endTs, manual:true}); getDay(k).entries.sort((a,b)=>a.start-b.start); }
+    if (endTs > startTs) { getDay(k).entries.push({start:startTs,end:endTs,manual:true}); getDay(k).entries.sort((a,b)=>a.start-b.start); }
   });
   saveDb(); alert(`Applied to ${qfSelectedDays.size} day(s) ✓`); switchTab('home');
 }
 
-// ── RESTORE ACTIVE SESSION ──
+function applyCopyWeek() {
+  if (qfCopyWeek === null) { alert('Please select a past week to copy.'); return; }
+  const srcDays = weekDays(qfCopyWeek), tgtDays = weekDays(0); let count = 0;
+  srcDays.forEach((sd,i) => {
+    const sk = dayKey(sd), tk = dayKey(tgtDays[i]);
+    (db[sk]?.entries||[]).forEach(e => {
+      const dur = e.end-e.start, srcDate = new Date(e.start), tgtDate = new Date(tgtDays[i]);
+      tgtDate.setHours(srcDate.getHours(), srcDate.getMinutes(), 0, 0);
+      getDay(tk).entries.push({start:tgtDate.getTime(), end:tgtDate.getTime()+dur, manual:true}); count++;
+    });
+    if ((db[sk]?.entries||[]).length) getDay(tk).entries.sort((a,b)=>a.start-b.start);
+  });
+  saveDb(); alert(`Copied ${count} entries into this week ✓`); switchTab('home');
+}
+
+// ── RESTORE SESSION ──
 const active = JSON.parse(localStorage.getItem('wtt_active')||'null');
 if (active) {
   state.clockedIn = true; state.clockInTime = active.start;
-  document.getElementById('main-btn').textContent = 'Clock Out'; document.getElementById('main-btn').className = 'punch-btn out';
+  document.getElementById('main-btn').textContent = 'Clock Out';
+  document.getElementById('main-btn').className   = 'punch-btn out';
   document.getElementById('clock-status').className = 'status active';
 }
 startClock(); renderWeek();
